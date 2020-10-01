@@ -1,0 +1,11 @@
+main: fr.pederobien.minecrafthunter.HunterPlugin
+name: minecraft-hunter
+version: 1.0-SNAPSHOT
+api-version: 1.13
+depend: [minecraft-border]
+
+description:
+commands:
+  hunter:
+    description: This command is used to configure an hunter game.
+    permission: HunterPlugin.permission
