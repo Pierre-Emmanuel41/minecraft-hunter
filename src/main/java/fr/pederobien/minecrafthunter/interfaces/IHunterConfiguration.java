@@ -6,7 +6,7 @@ import org.bukkit.inventory.ItemStack;
 
 import fr.pederobien.minecraftborder.interfaces.IGameBorderConfiguration;
 
-public interface IHunterGameConfiguration extends IGameBorderConfiguration {
+public interface IHunterConfiguration extends IGameBorderConfiguration {
 
 	/**
 	 * While the game time is less than this time, if a player dies, it will respawn in game mode survival and keep its inventory.

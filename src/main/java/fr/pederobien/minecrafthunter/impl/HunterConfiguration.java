@@ -10,10 +10,10 @@ import fr.pederobien.minecraftborder.impl.AbstractGameBorderConfiguration;
 import fr.pederobien.minecraftdevelopmenttoolkit.utils.DisplayHelper;
 import fr.pederobien.minecraftgameplateform.interfaces.element.IGame;
 import fr.pederobien.minecraftgameplateform.interfaces.element.ITeam;
-import fr.pederobien.minecrafthunter.interfaces.IHunterGameConfiguration;
+import fr.pederobien.minecrafthunter.interfaces.IHunterConfiguration;
 import fr.pederobien.minecraftmanagers.WorldManager;
 
-public class HunterGameConfiguration extends AbstractGameBorderConfiguration implements IHunterGameConfiguration {
+public class HunterConfiguration extends AbstractGameBorderConfiguration implements IHunterConfiguration {
 	private static final LocalTime DEFAULT_PLAYER_DONT_REVIVE_TIME = LocalTime.of(0, 0, 0);
 	private static final Boolean DEFAULT_UHC_MODE = false;
 	private static final ItemStack DEFAULT_ITEM_ON_PLAYER_KILLS = new ItemStack(Material.GOLDEN_APPLE);
@@ -23,7 +23,7 @@ public class HunterGameConfiguration extends AbstractGameBorderConfiguration imp
 	private Boolean isUhc;
 	private ItemStack itemOnPlayerKills;
 
-	protected HunterGameConfiguration(String name) {
+	protected HunterConfiguration(String name) {
 		super(name);
 	}
 
