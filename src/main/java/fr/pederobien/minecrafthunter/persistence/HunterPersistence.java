@@ -14,11 +14,11 @@ import fr.pederobien.minecrafthunter.interfaces.IHunterConfiguration;
 import fr.pederobien.minecrafthunter.persistence.loaders.HunterLoaderV10;
 import fr.pederobien.persistence.interfaces.IPersistence;
 
-public class HunterGamePersistence extends AbstractMinecraftPersistence<IHunterConfiguration> {
+public class HunterPersistence extends AbstractMinecraftPersistence<IHunterConfiguration> {
 	private static final String ROOT_XML_DOCUMENT = "hungergame";
 	private IPersistence<IBorderConfiguration> borderPersistence;
 
-	private HunterGamePersistence() {
+	private HunterPersistence() {
 		super(Plateform.ROOT.resolve("HunterGame"), "DefaultHunterGameConfiguration");
 		borderPersistence = BorderPersistence.getInstance();
 		register(new HunterLoaderV10(borderPersistence));
@@ -29,7 +29,7 @@ public class HunterGamePersistence extends AbstractMinecraftPersistence<IHunterC
 	}
 
 	private static class SingletonHolder {
-		public static final IMinecraftPersistence<IHunterConfiguration> PERSISTENCE = new HunterGamePersistence();
+		public static final IMinecraftPersistence<IHunterConfiguration> PERSISTENCE = new HunterPersistence();
 	}
 
 	@Override
