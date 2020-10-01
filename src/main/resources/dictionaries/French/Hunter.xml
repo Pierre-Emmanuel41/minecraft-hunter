@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dictionary>
+	<name>HungerGame</name>
+	<version>1.0</version>
+	<locales>
+		<locale>fr</locale>
+		<locale>fr-FR</locale>
+		<locale>fr-CA</locale>
+	</locales>
+	<messages>
+		<message>
+			<code>HUNTER_EXPLANATION</code>
+			<value>Pour configurer une configuration de jeu hunter</value>
+		</message>
+		<message>
+			<code>NEW_HUNTER__EXPLANATION</code>
+			<value>Pour créer une nouvelle configuration de jeu hunter</value>
+		</message>
+		<message>
+			<code>NEW_HUNTER__NAME_IS_MISSING</code>
+			<value>Impossible de créer une nouvelle configuration de jeu hunter, il manque le nom</value>
+		</message>
+		<message>
+			<code>NEW_HUNTER__NAME_ALREADY_TAKEN</code>
+			<value>La configuration de jeu hunter %s existe déjà</value>
+		</message>
+		<message>
+			<code>NEW_HUNTER__CONFIGURATION_CREATED</code>
+			<value>La configuration de jeu hunter %s a été créée</value>
+		</message>
+		<message>
+			<code>RENAME_HUNTER__EXPLANATION</code>
+			<value>Pour renommer la configuration de jeu hunter courante</value>
+		</message>
+		<message>
+			<code>RENAME_HUNTER__NAME_IS_MISSING</code>
+			<value>Impossible de renommer la configuration de jeu hunter %s, il manque le nom</value>
+		</message>
+		<message>
+			<code>RENAME_HUNTER__NAME_ALREADY_TAKEN</code>
+			<value>Impossible de renommer la configuration de jeu hunter %s en %s, cette configuration existe déjà</value>
+		</message>
+		<message>
+			<code>RENAME_HUNTER__CONFIGURATION_RENAMED</code>
+			<value>La configuration de jeu hunter %s a été renommé en %s</value>
+		</message>
+		<message>
+			<code>SAVE_HUNTER__EXPLANATION</code>
+			<value>Pour sauvegarder la configuration de jeu hunter courante</value>
+		</message>
+		<message>
+			<code>SAVE_HUNTER__CONFIGURATION_SAVED</code>
+			<value>La configuration de jeu hunter %s a été sauvegardée</value>
+		</message>
+		<message>
+			<code>LIST_HUNTER__EXPLANATION</code>
+			<value>Pour afficher le nom des configurations de jeu hunter existantes</value>
+		</message>
+		<message>
+			<code>LIST_HUNTER__NO_REGISTERED_CONFIGURATION</code>
+			<value>Il n'existe aucune configuration de jeu hunter</value>
+		</message>
+		<message>
+			<code>LIST_HUNTER__ONE_REGISTERED_CONFIGURATION</code>
+			<value>Il existe une configuration de jeu hunter :%n%s</value>
+		</message>
+		<message>
+			<code>LIST_HUNTER__SEVERAL_ELEMENTS</code>
+			<value>Liste des configurations de jeu hunter :%n%s</value>
+		</message>
+		<message>
+			<code>DELETE_HUNTER__EXPLANATION</code>
+			<value>Pour supprimer le fichier d'une configuration de jeu hunter</value>
+		</message>
+		<message>
+			<code>DELETE_HUNTER__NAME_IS_MISSING</code>
+			<value>Impossible de supprimer le fichier d'une configuration de jeu hunter, il manque le nom</value>
+		</message>
+		<message>
+			<code>DELETE_HUNTER__DID_NOT_DELETE</code>
+			<value>La suppression de la configuration de jeu hunter %s n'a pas pu s'effectuer correctement</value>
+		</message>
+		<message>
+			<code>DELETE_HUNTER__CONFIGURATION_DELETED</code>
+			<value>Le fichier de la configuration de jeu hunter %s a été supprimé</value>
+		</message>
+		<message>
+			<code>DETAILS_HUNTER__EXPLANATION</code>
+			<value>Pour afficher les caractéristiques de la configuration de jeu hunter courante</value>
+		</message>
+		<message>
+			<code>DETAILS_HUNTER__ON_DETAILS</code>
+			<value>Caractéristiques de la configuration de jeu hunter courante :%n%s</value>
+		</message>
+		<message>
+			<code>LOAD_HUNTER__EXPLANATION</code>
+			<value>Pour charger une configuration de jeu hunter</value>
+		</message>
+		<message>
+			<code>LOAD_HUNTER__NAME_IS_MISSING</code>
+			<value>Impossible de charger une configuration de jeu hunter, il manque le nom</value>
+		</message>
+		<message>
+			<code>LOAD_HUNTER__CONFIGURATION_LOADED</code>
+			<value>La configuration %s a été chargée</value>
+		</message>
+		<message>
+			<code>PLAYER_DONT_REVIVE_TIME_HUNTER__EXPLANATION</code>
+			<value>Pour définir le temps au bout duquel les joueurs réapparaissent en mode spectateur</value>
+		</message>
+		<message>
+			<code>PLAYER_DONT_REVIVE_TIME_HUNTER__TIME_IS_MISSING</code>
+			<value>Impossible de définir le temps au bout duquel les joueurs réapparaissent en mode spectateur, il manque le temps</value>
+		</message>
+		<message>
+			<code>PLAYER_DONT_REVIVE_TIME_HUNTER__FROM_THE_BEGINNING</code>
+			<value>Les joueurs réapparaissent en mode spectateur dès le début de la partie</value>
+		</message>
+		<message>
+			<code>PLAYER_DONT_REVIVE_TIME_HUNTER__TIME_DEFINED</code>
+			<value>Les joueurs réapparaissent en mode spectateur après %s de jeu</value>
+		</message>
+		<message>
+			<code>IS_UHC_HUNTER__EXPLANATION</code>
+			<value>Pour définir si le mode uhc est activé ou désactivé</value>
+		</message>
+		<message>
+			<code>IS_UHC_HUNTER__VALUE_IS_MISSING</code>
+			<value>Impossible de définir si le mode uhc est activé ou désactivé, il manque la valeur</value>
+		</message>
+		<message>
+			<code>IS_UHC_HUNTER__VALUE_DEFINED</code>
+			<value>Le mode uhc de la configuration %s est défini à : %s</value>
+		</message>
+		<message>
+			<code>ITEM_ON_PLAYER_KILLS_HUNTER__EXPLANATION</code>
+			<value>Pour définir l'item à donner à un joueur qui a tué un autre joueur</value>
+		</message>
+		<message>
+			<code>ITEM_ON_PLAYER_KILLS_HUNTER__ITEM_IS_MISSING</code>
+			<value>Impossible de définir l'item à donner à un joueur qui tue un autre joueur, il manque l'item</value>
+		</message>
+		<message>
+			<code>ITEM_ON_PLAYER_KILLS_HUNTER__ITEM_NOT_FOUND</code>
+			<value>Aucune item est associé à %s</value>
+		</message>
+		<message>
+			<code>ITEM_ON_PLAYER_KILLS_HUNTER__ITEM_DEFINED</code>
+			<value>L'item %s sera donné au joueur qui tue un autre joueur</value>
+		</message>
+		<message>
+			<code>HUNTER_OVERWORLD_BORDER_IS_MISSING</code>
+			<value>Impossible de lancer la partie %s, il manque la bordure de l'overworld</value>
+		</message>
+		<message>
+			<code>HUNTER_PVP_ENABLED</code>
+			<value>Pvp activé</value>
+		</message>
+		<message>
+			<code>HUNTER_NO_RESURRECTION</code>
+			<value>Pas de résurrection</value>
+		</message>
+		<message>
+			<code>HUNTER_NO_RESURRECTION_COUNT_DOWN</code>
+			<value>Pas de résurrection dans %s</value>
+		</message>
+	</messages>
+</dictionary>

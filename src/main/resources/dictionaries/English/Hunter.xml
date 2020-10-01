@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dictionary>
+	<name>Game</name>
+	<version>1.0</version>
+	<locales>
+		<locale>en</locale>
+		<locale>en-EN</locale>
+		<locale>en-GB</locale>
+		<locale>en-UK</locale>
+		<locale>en-US</locale>
+		<locale>en-CA</locale>
+	</locales>
+	<messages>
+		<message>
+			<code>HUNTER_EXPLANATION</code>
+			<value>To configure an hunter configuration</value>
+		</message>
+		<message>
+			<code>NEW_HUNTER__EXPLANATION</code>
+			<value>To create a new hunter configuration</value>
+		</message>
+		<message>
+			<code>NEW_HUNTER__NAME_IS_MISSING</code>
+			<value>Cannot create a new hunter configuration, the name is missing</value>
+		</message>
+		<message>
+			<code>NEW_HUNTER__NAME_ALREADY_TAKEN</code>
+			<value>The hunter configuration %s already exists</value>
+		</message>
+		<message>
+			<code>NEW_HUNTER__CONFIGURATION_CREATED</code>
+			<value>The hunter configuration %s has been created</value>
+		</message>
+		<message>
+			<code>RENAME_HUNTER__EXPLANATION</code>
+			<value>To rename the current hunter configuration</value>
+		</message>
+		<message>
+			<code>RENAME_HUNTER__NAME_IS_MISSING</code>
+			<value>Cannot rename hunter configuration %s, the name is missing</value>
+		</message>
+		<message>
+			<code>RENAME_HUNTER__NAME_ALREADY_TAKEN</code>
+			<value>Cannot rename hunter configuration %s as %s, this configuration already exists</value>
+		</message>
+		<message>
+			<code>RENAME_HUNTER__CONFIGURATION_RENAMED</code>
+			<value>The hunter configuration %s has been renamed as %s</value>
+		</message>
+		<message>
+			<code>SAVE_HUNTER__EXPLANATION</code>
+			<value>To save the current hunter configuration</value>
+		</message>
+		<message>
+			<code>SAVE_HUNTER__CONFIGURATION_SAVED</code>
+			<value>The hunter configuration %s has been saved</value>
+		</message>
+		<message>
+			<code>LIST_HUNTER__EXPLANATION</code>
+			<value>To display the name of registered hunter configurations</value>
+		</message>
+		<message>
+			<code>LIST_HUNTER__NO_REGISTERED_CONFIGURATION</code>
+			<value>There is any registered hunter configuration</value>
+		</message>
+		<message>
+			<code>LIST_HUNTER__ONE_REGISTERED_CONFIGURATION</code>
+			<value>There is one registered hunter configuration :%n%s</value>
+		</message>
+		<message>
+			<code>LIST_HUNTER__SEVERAL_ELEMENTS</code>
+			<value>List of registered hunter configurations :%n%s</value>
+		</message>
+		<message>
+			<code>DELETE_HUNTER__EXPLANATION</code>
+			<value>To delete the file of an hunter configuration</value>
+		</message>
+		<message>
+			<code>DELETE_HUNTER__NAME_IS_MISSING</code>
+			<value>Cannot delete the file of an hunter configuration, the name is missing</value>
+		</message>
+		<message>
+			<code>DELETE_HUNTER__DID_NOT_DELETE</code>
+			<value>The deletion of the %s hunter configuration file was not successful</value>
+		</message>
+		<message>
+			<code>DELETE_HUNTER__CONFIGURATION_DELETED</code>
+			<value>The %s hunter configuration file has been deleted</value>
+		</message>
+		<message>
+			<code>DETAILS_HUNTER__EXPLANATION</code>
+			<value>To display the current hunter configuration characteristics</value>
+		</message>
+		<message>
+			<code>DETAILS_HUNTER__ON_DETAILS</code>
+			<value>Characteristics of the current hunter configuration :%n%s</value>
+		</message>
+		<message>
+			<code>LOAD_HUNTER__EXPLANATION</code>
+			<value>To load an hunter configuration</value>
+		</message>
+		<message>
+			<code>LOAD_HUNTER__NAME_IS_MISSING</code>
+			<value>Cannot load an hunter configuration, the name is missing</value>
+		</message>
+		<message>
+			<code>LOAD_HUNTER__CONFIGURATION_LOADED</code>
+			<value>The hunter configuration %s has been loaded</value>
+		</message>
+		<message>
+			<code>PLAYER_DONT_REVIVE_TIME_HUNTER__EXPLANATION</code>
+			<value>To set the time after which players respawn in spectator mode</value>
+		</message>
+		<message>
+			<code>PLAYER_DONT_REVIVE_TIME_HUNTER__TIME_IS_MISSING</code>
+			<value>Cannot set the time after which players respawn in spectator mode, the time is missing</value>
+		</message>
+		<message>
+			<code>PLAYER_DONT_REVIVE_TIME_HUNTER__FROM_THE_BEGINNING</code>
+			<value>Players respawn in spectator mode from the beginning of the game</value>
+		</message>
+		<message>
+			<code>PLAYER_DONT_REVIVE_TIME_HUNTER__TIME_DEFINED</code>
+			<value>Players respawn in spectator mode after %s of play</value>
+		</message>
+		<message>
+			<code>IS_UHC_HUNTER__EXPLANATION</code>
+			<value>To set if the uhc mode is enabled or disabled</value>
+		</message>
+		<message>
+			<code>IS_UHC_HUNTER__VALUE_IS_MISSING</code>
+			<value>Cannot define if the uhc mode is enabled or disabled, the value is missing</value>
+		</message>
+		<message>
+			<code>IS_UHC_HUNTER__VALUE_DEFINED</code>
+			<value>The uhc mode of the hunter configuration %s is set to : %s</value>
+		</message>
+		<message>
+			<code>ITEM_ON_PLAYER_KILLS_HUNTER__EXPLANATION</code>
+			<value>To set the item to give to a player that killed another player</value>
+		</message>
+		<message>
+			<code>ITEM_ON_PLAYER_KILLS_HUNTER__ITEM_IS_MISSING</code>
+			<value>Cannot set the item to give to a player that killed another player, the item is missing</value>
+		</message>
+		<message>
+			<code>ITEM_ON_PLAYER_KILLS_HUNTER__ITEM_NOT_FOUND</code>
+			<value>Any item is associated to %s</value>
+		</message>
+		<message>
+			<code>ITEM_ON_PLAYER_KILLS_HUNTER__ITEM_DEFINED</code>
+			<value>The item %s will be given to a player that killed another player</value>
+		</message>
+		<message>
+			<code>HUNTER_OVERWORLD_BORDER_IS_MISSING</code>
+			<value>Cannot start game %s, the overworld's border is missing</value>
+		</message>
+		<message>
+			<code>HUNTER_PVP_ENABLED</code>
+			<value>Pvp enabled</value>
+		</message>
+		<message>
+			<code>HUNTER_NO_RESURRECTION</code>
+			<value>No resurrection</value>
+		</message>
+		<message>
+			<code>HUNTER_NO_RESURRECTION_COUNT_DOWN</code>
+			<value>No resurrection in %s</value>
+		</message>
+	</messages>
+</dictionary>
