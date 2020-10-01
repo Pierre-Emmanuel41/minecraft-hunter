@@ -23,7 +23,7 @@ public class HunterConfiguration extends AbstractGameBorderConfiguration impleme
 	private Boolean isUhc;
 	private ItemStack itemOnPlayerKills;
 
-	protected HunterConfiguration(String name) {
+	public HunterConfiguration(String name) {
 		super(name);
 	}
 
