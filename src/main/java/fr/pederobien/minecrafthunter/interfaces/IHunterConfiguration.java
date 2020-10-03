@@ -51,4 +51,65 @@ public interface IHunterConfiguration extends IGameBorderConfiguration {
 	 * @param itemOnPlayerKills The item to give.
 	 */
 	void setItemOnPlayerKills(ItemStack itemOnPlayerKills);
+
+	/**
+	 * @return True if a target can only one hunter, false otherwise.
+	 */
+	Boolean isOneHunterPerTarget();
+
+	/**
+	 * Set if a target can only one hunter.
+	 * 
+	 * @param isOneHunterPerTarget True if a target can only one hunter, false otherwise.
+	 */
+	void setOneHunterPerTarget(boolean isOneHunterPerTarget);
+
+	/**
+	 * @return True if the distance from the target's hunter should be displayed on target's score board, false otherwise.
+	 */
+	Boolean isDistanceFromHunterDisplayed();
+
+	/**
+	 * Set if the distance between the hunter and its target should be displayed in the target's score board.
+	 * 
+	 * @param isDistanceFromHunterDisplayed True if the distance from the target's hunter should be displayed in the target's score
+	 *                                      board, false otherwise.
+	 */
+	void setIsDistanceFromHunterDisplayed(boolean isDistanceFromHunterDisplayed);
+
+	/**
+	 * @return True if the target's name should be displayed in the hunter's score board, false otherwise.
+	 */
+	Boolean isTargetNameDisplayed();
+
+	/**
+	 * Set if the target's name should be displayed in the hunter's score board.
+	 * 
+	 * @param isTargetNameDisplayed True if the target's name should be displayed in the hunter's score board, false otherwise.
+	 */
+	void setIsTargetNameDisplayed(boolean isTargetNameDisplayed);
+
+	/**
+	 * @return The period between two refresh of the target direction in the hunter score board.
+	 */
+	LocalTime getTargetDirectionRefreshPeriod();
+
+	/**
+	 * Set the time between two refresh of the target direction in the hunter score board.
+	 * 
+	 * @param targetDirectionRefreshPeriod The period between two refresh of the target location in the hunter score board.
+	 */
+	void setTargetDirectionRefreshPeriod(LocalTime targetDirectionRefreshPeriod);
+
+	/**
+	 * @return The period between two refresh of the hunter distance in the target score board.
+	 */
+	LocalTime getHunterDistanceRefreshPeriod();
+
+	/**
+	 * Set the time between two refresh of the hunter distance in the target score board.
+	 * 
+	 * @param hunterDistanceRefreshPeriod The period between two refresh of the hunter distance in the target score board.
+	 */
+	void setHunterDistanceRefreshPeriod(LocalTime hunterDistanceRefreshPeriod);
 }
