@@ -88,4 +88,11 @@ public class HunterEditionFactory {
 	public static IMapPersistenceEdition<IHunterConfiguration> isDistanceFromHunterDisplayed() {
 		return new IsDistanceFromHunterDisplayed();
 	}
+
+	/**
+	 * @return An edition to set if the target's name should be displayed in the hunter's score board.
+	 */
+	public static IMapPersistenceEdition<IHunterConfiguration> isTargetNameDisplayed() {
+		return new IsTargetNameDisplayed();
+	}
 }

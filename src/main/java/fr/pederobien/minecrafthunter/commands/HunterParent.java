@@ -17,6 +17,7 @@ public class HunterParent extends AbstractGameBorderConfigurationParent<IHunterC
 		addEdition(HunterEditionFactory.itemOnPlayerKills());
 		addEdition(HunterEditionFactory.isOneHunterPerTarget());
 		addEdition(HunterEditionFactory.isDistanceFromHunterDisplayed());
+		addEdition(HunterEditionFactory.isTargetNameDisplayed());
 	}
 
 	@Override

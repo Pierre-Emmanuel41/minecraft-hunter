@@ -176,6 +176,18 @@
 			<value>Rule isDistancefromHunterDisplayed in configuration %s is now set to : %s</value>
 		</message>
 		<message>
+			<code>IS_TARGET_NAME_DISPLAYED__EXPLANATION</code>
+			<value>To set if the target's name should be displayed in the hunter's score board</value>
+		</message>
+		<message>
+			<code>IS_TARGET_NAME_DISPLAYED__VALUE_IS_MISSING</code>
+			<value>Cannot set if the target's name should be displayed in the hunter's score board, the value is missing</value>
+		</message>
+		<message>
+			<code>IS_TARGET_NAME_DISPLAYED__VALUE_DEFINED</code>
+			<value>Rule isTargetNameDisplayed in configuration %s is now set to : %s</value>
+		</message>
+		<message>
 			<code>HUNTER_OVERWORLD_BORDER_IS_MISSING</code>
 			<value>Cannot start game %s, the overworld's border is missing</value>
 		</message>
