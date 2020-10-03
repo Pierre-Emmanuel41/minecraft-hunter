@@ -5,7 +5,7 @@ import fr.pederobien.minecraftgameplateform.interfaces.element.ILabel;
 public enum EHunterLabel implements ILabel {
 	PLAYER_DONT_REVIVE_TIME("playerDontReviveTime"), IS_UHC("isUhc"), ITEM_ON_PLAYER_KILLS("itemOnPlayerKills"), IS_ONE_HUNTER_PER_TARGET("isOneHunterPerTarget"),
 	IS_DISTANCE_FROM_HUNTER_DISPLAYED("isDistanceFromHunterDisplayed"), IS_TARGET_NAME_DISPLAYED("isTargetNameDisplayed"),
-	TARGET_DIRECTION_REFRESH_PERIOD("targetDirectionRefreshPeriod"), HUNTER_DISTANCE_REFRESH_PERIOD("hunterDistanceREfreshPeriod");
+	TARGET_DIRECTION_REFRESH_PERIOD("targetDirectionRefreshPeriod"), HUNTER_DISTANCE_REFRESH_PERIOD("hunterDistanceRefreshPeriod");
 
 	private String label;
 
