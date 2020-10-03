@@ -161,6 +161,18 @@
 			<value>La règle isOnePlayerPerTarget pour la configuration %s est maintenant définie à : %s</value>
 		</message>
 		<message>
+			<code>IS_DISTANCE_FROM_HUNTER_DISPLAYED__EXPLANATION</code>
+			<value>Pour définir si la distance au chasseur le plus proche doit être affiché dans le scoreboard de la cible</value>
+		</message>
+		<message>
+			<code>IS_DISTANCE_FROM_HUNTER_DISPLAYED__VALUE_IS_MISSING</code>
+			<value>Impossible de définir si la distance au chasseur le plus proche doit être affiché dans le scoreboard de la cible, il manque la valeur</value>
+		</message>
+		<message>
+			<code>IS_DISTANCE_FROM_HUNTER_DISPLAYED__VALUE_DEFINED</code>
+			<value>La règle isDistanceFromHunterDisplayed pour la configuration %s est maintenant définie à : %s</value>
+		</message>
+		<message>
 			<code>HUNTER_OVERWORLD_BORDER_IS_MISSING</code>
 			<value>Impossible de lancer la partie %s, il manque la bordure de l'overworld</value>
 		</message>
