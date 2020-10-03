@@ -74,4 +74,11 @@ public class HunterEditionFactory {
 	public static IMapPersistenceEdition<IHunterConfiguration> itemOnPlayerKills() {
 		return new ItemOnPlayerKills();
 	}
+
+	/**
+	 * @return An edition to set if a target can have several hunters.
+	 */
+	public static IMapPersistenceEdition<IHunterConfiguration> isOneHunterPerTarget() {
+		return new IsOneHunterPerTarget();
+	}
 }

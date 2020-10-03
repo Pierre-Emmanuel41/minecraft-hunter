@@ -152,6 +152,18 @@
 			<value>The item %s will be given to a player that killed another player</value>
 		</message>
 		<message>
+			<code>IS_ONE_HUNTER_PER_TARGET__EXPLANATION</code>
+			<value>To set if a target can have several hunters</value>
+		</message>
+		<message>
+			<code>IS_ONE_HUNTER_PER_TARGET__VALUE_IS_MISSING</code>
+			<value>Cannot set if a target can have several hunters, the value is missing</value>
+		</message>
+		<message>
+			<code>IS_ONE_HUNTER_PER_TARGET__VALUE_DEFINED</code>
+			<value>Rule isOnePlayerPerTarget in configuration %s is now set to : %s</value>
+		</message>
+		<message>
 			<code>HUNTER_OVERWORLD_BORDER_IS_MISSING</code>
 			<value>Cannot start game %s, the overworld's border is missing</value>
 		</message>
