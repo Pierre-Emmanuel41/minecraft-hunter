@@ -40,12 +40,6 @@ public class HunterLoaderV10 extends AbstractHunterLoader {
 
 		// Getting configuration is target name displayed
 		setIsTargetNameDisplayed(root);
-
-		// Getting configuration target direction refresh period
-		setTargetDirectionRefreshPeriod(root);
-
-		// Getting configuration hunter distance refresh period
-		setHunterDistanceRefreshPeriod(root);
 		return this;
 	}
 }
