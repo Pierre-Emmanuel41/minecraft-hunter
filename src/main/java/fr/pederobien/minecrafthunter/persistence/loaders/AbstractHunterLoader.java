@@ -94,6 +94,56 @@ public abstract class AbstractHunterLoader extends AbstractXmlPersistenceLoader<
 		get().setItemOnPlayerKills(new ItemStack(getMaterial(itemOnPlayerKills.getChildNodes().item(0).getNodeValue())));
 	}
 
+	/**
+	 * Set the configuration's is one hunter per target.
+	 * 
+	 * @param root The xml root that contains all configuration's parameter
+	 */
+	protected void setIsOneHunterPerTarget(Element root) {
+		Node isOneHunterPerTarget = getElementsByTagName(root, HunterXmlTag.IS_ONE_HUNTER_PER_TARGET).item(0);
+		get().setIsOneHunterPerTarget(getBooleanNodeValue(isOneHunterPerTarget.getChildNodes().item(0)));
+	}
+
+	/**
+	 * Set the configuration's is distance from hunter displayed
+	 * 
+	 * @param root The xml root that contains all configuration's parameter
+	 */
+	protected void setIsDistanceFromHunterDisplayed(Element root) {
+		Node isDistanceFromHunterDisplayed = getElementsByTagName(root, HunterXmlTag.IS_DISTANCE_FROM_HUNTER_DISPLAYED).item(0);
+		get().setIsDistanceFromHunterDisplayed(getBooleanNodeValue(isDistanceFromHunterDisplayed.getChildNodes().item(0)));
+	}
+
+	/**
+	 * Set the configuration's is target name displayed
+	 * 
+	 * @param root The xml root that contains all configuration's parameter
+	 */
+	protected void setIsTargetNameDisplayed(Element root) {
+		Node isTargetNameDisplayed = getElementsByTagName(root, HunterXmlTag.IS_TARGET_NAME_DISPLAYED).item(0);
+		get().setIsTargetNameDisplayed(getBooleanNodeValue(isTargetNameDisplayed.getChildNodes().item(0)));
+	}
+
+	/**
+	 * Set the configuration's target direction refresh period.
+	 * 
+	 * @param root The xml root that contains all configuration's parameter
+	 */
+	protected void setTargetDirectionRefreshPeriod(Element root) {
+		Node targetDirectionRefreshPeriod = getElementsByTagName(root, HunterXmlTag.TARGET_DIRECTION_REFRESH_PERIOD).item(0);
+		get().setTargetDirectionRefreshPeriod(getLocalTimeNodeValue(targetDirectionRefreshPeriod.getChildNodes().item(0)));
+	}
+
+	/**
+	 * Set the configuration's hunter distance refresh period.
+	 * 
+	 * @param root The xml root that contains all configuration's parameter
+	 */
+	protected void setHunterDistanceRefreshPeriod(Element root) {
+		Node hunterDistanceRefreshPeriod = getElementsByTagName(root, HunterXmlTag.HUNTER_DISTANCE_REFRESH_PERIOD).item(0);
+		get().setHunterDistanceRefreshPeriod(getLocalTimeNodeValue(hunterDistanceRefreshPeriod.getChildNodes().item(0)));
+	}
+
 	private Material getMaterial(String name) {
 		String normalizedName = name.toUpperCase().replace(" ", "_");
 		for (Material material : Material.values())

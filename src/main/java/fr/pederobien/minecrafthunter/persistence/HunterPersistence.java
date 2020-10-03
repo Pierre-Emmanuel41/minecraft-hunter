@@ -82,6 +82,26 @@ public class HunterPersistence extends AbstractMinecraftPersistence<IHunterConfi
 		itemOnPlayerKills.appendChild(doc.createTextNode(normalizeMaterial(get().getItemOnPlayerKills().getType())));
 		root.appendChild(itemOnPlayerKills);
 
+		Element isOneHunterPerTarget = createElement(doc, HunterXmlTag.IS_ONE_HUNTER_PER_TARGET);
+		isOneHunterPerTarget.appendChild(doc.createTextNode(get().isOneHunterPerTarget().toString()));
+		root.appendChild(isOneHunterPerTarget);
+
+		Element isDistanceFromHunterDisplayed = createElement(doc, HunterXmlTag.IS_DISTANCE_FROM_HUNTER_DISPLAYED);
+		isDistanceFromHunterDisplayed.appendChild(doc.createTextNode(get().isDistanceFromHunterDisplayed().toString()));
+		root.appendChild(isDistanceFromHunterDisplayed);
+
+		Element isTargetNameDisplayed = createElement(doc, HunterXmlTag.IS_TARGET_NAME_DISPLAYED);
+		isTargetNameDisplayed.appendChild(doc.createTextNode(get().isTargetNameDisplayed().toString()));
+		root.appendChild(isTargetNameDisplayed);
+
+		Element targetDirectionRefreshPeriod = createElement(doc, HunterXmlTag.TARGET_DIRECTION_REFRESH_PERIOD);
+		targetDirectionRefreshPeriod.appendChild(doc.createTextNode(get().getTargetDirectionRefreshPeriod().toString()));
+		root.appendChild(targetDirectionRefreshPeriod);
+
+		Element hunterDistanceRefreshPeriod = createElement(doc, HunterXmlTag.HUNTER_DISTANCE_REFRESH_PERIOD);
+		hunterDistanceRefreshPeriod.appendChild(doc.createTextNode(get().getHunterDistanceRefreshPeriod().toString()));
+		root.appendChild(hunterDistanceRefreshPeriod);
+
 		saveDocument(doc, get().getName());
 		return true;
 	}
