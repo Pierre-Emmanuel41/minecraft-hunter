@@ -15,11 +15,11 @@ import fr.pederobien.minecraftmanagers.WorldManager;
 
 public class HunterConfiguration extends AbstractGameBorderConfiguration implements IHunterConfiguration {
 	private static final LocalTime DEFAULT_PLAYER_DONT_REVIVE_TIME = LocalTime.of(0, 0, 0);
-	private static final LocalTime DEFAULT_TARGET_DIRECTION_REFRESH_PERIOD = LocalTime.of(0, 0, 30);
-	private static final LocalTime DEFAULT_HUNTER_DISTANCE_REFRESH_PERIOD = LocalTime.of(0, 0, 30);
+	private static final LocalTime DEFAULT_TARGET_DIRECTION_REFRESH_PERIOD = LocalTime.of(0, 1, 0);
+	private static final LocalTime DEFAULT_HUNTER_DISTANCE_REFRESH_PERIOD = LocalTime.of(0, 1, 0);
 	private static final Boolean DEFAULT_UHC_MODE = false;
 	private static final Boolean DEFAULT_IS_ONE_HUNTER_PER_TARGET = true;
-	private static final Boolean DEFAULT_IS_DISTANCE_FROM_HUNTER_DISPLAYED = true;
+	private static final Boolean DEFAULT_IS_DISTANCE_FROM_HUNTER_DISPLAYED = false;
 	private static final Boolean DEFAULT_IS_TARGET_NAME_DISPLAYED = false;
 	private static final ItemStack DEFAULT_ITEM_ON_PLAYER_KILLS = new ItemStack(Material.GOLDEN_APPLE);
 
