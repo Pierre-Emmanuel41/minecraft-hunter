@@ -200,6 +200,18 @@
 			<value>The target direction period refresh in configuration %s is now set to : %s</value>
 		</message>
 		<message>
+			<code>HUNTER_DISTANCE_REFRESH_PERIOD__EXPLANATION</code>
+			<value>To set the closer hunter distance period refresh</value>
+		</message>
+		<message>
+			<code>HUNTER_DISTANCE_REFRESH_PERIOD__TIME_IS_MISSING</code>
+			<value>Cannot set the closer hunter distance period refresh, the time is missing</value>
+		</message>
+		<message>
+			<code>HUNTER_DISTANCE_REFRESH_PERIOD__TIME_DEFINED</code>
+			<value>The closer hunter distance period refresh in configuration %s is now set to : %s</value>
+		</message>
+		<message>
 			<code>HUNTER_OVERWORLD_BORDER_IS_MISSING</code>
 			<value>Cannot start game %s, the overworld's border is missing</value>
 		</message>

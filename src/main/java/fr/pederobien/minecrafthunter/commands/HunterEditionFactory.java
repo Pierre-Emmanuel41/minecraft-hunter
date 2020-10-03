@@ -102,4 +102,11 @@ public class HunterEditionFactory {
 	public static IMapPersistenceEdition<IHunterConfiguration> targetDirectionRefreshPeriod() {
 		return new TargetDirectionRefreshPeriod();
 	}
+
+	/**
+	 * @return An edition to set the closer hunter distance refresh period.
+	 */
+	public static IMapPersistenceEdition<IHunterConfiguration> hunterDistanceRefreshPeriod() {
+		return new HunterDistanceRefreshPeriod();
+	}
 }

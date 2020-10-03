@@ -186,15 +186,27 @@
 		</message>
 		<message>
 			<code>TARGET_DIRECTION_REFRESH_PERIOD__EXPLANATION</code>
-			<value>Pour définir la période de rafraîssement de la direction de la cible</value>
+			<value>Pour définir la période de rafraîchissement de la direction de la cible</value>
 		</message>
 		<message>
 			<code>TARGET_DIRECTION_REFRESH_PERIOD__TIME_IS_MISSING</code>
-			<value>Impossible de définir la période de rafraîssement de la direction de la cible, il manque le temps</value>
+			<value>Impossible de définir la période de rafraîchissement de la direction de la cible, il manque le temps</value>
 		</message>
 		<message>
 			<code>TARGET_DIRECTION_REFRESH_PERIOD__TIME_DEFINED</code>
 			<value>La période de rafraîchissement de la direction de la cible pour la configuration %s est maintenant définie à : %s</value>
+		</message>
+		<message>
+			<code>HUNTER_DISTANCE_REFRESH_PERIOD__EXPLANATION</code>
+			<value>Pour définir la période de rafraîchissement de la distance au plus proche chasseur</value>
+		</message>
+		<message>
+			<code>HUNTER_DISTANCE_REFRESH_PERIOD__TIME_IS_MISSING</code>
+			<value>Impossible de définir la période de rafraîchissement de la distance au plus proche chasseur, il manque le temps</value>
+		</message>
+		<message>
+			<code>HUNTER_DISTANCE_REFRESH_PERIOD__TIME_DEFINED</code>
+			<value>La période de rafraîchissement de la distance au plus proche chasseur pour la configuration %s est maintenant définie à : %s</value>
 		</message>
 		<message>
 			<code>HUNTER_OVERWORLD_BORDER_IS_MISSING</code>
