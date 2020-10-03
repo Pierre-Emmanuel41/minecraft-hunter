@@ -38,11 +38,12 @@ public class HunterPlugin extends JavaPlugin {
 	}
 
 	private void registerDictionaries() {
+		String[] dictionaries = new String[] { "Hunter.xml" };
 		// Registering French dictionaries
-		registerDictionary("French", "Hunter.xml");
+		registerDictionary("French", dictionaries);
 
 		// Registering English dictionaries
-		registerDictionary("English", "Hunter.xml");
+		registerDictionary("English", dictionaries);
 	}
 
 	private void registerDictionary(String parent, String... dictionaryNames) {
