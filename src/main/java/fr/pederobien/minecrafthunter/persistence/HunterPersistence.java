@@ -19,7 +19,7 @@ public class HunterPersistence extends AbstractMinecraftPersistence<IHunterConfi
 	private IPersistence<IBorderConfiguration> borderPersistence;
 
 	private HunterPersistence() {
-		super(Plateform.ROOT.resolve("HunterGame"), "DefaultHunterGameConfiguration");
+		super(Plateform.ROOT.resolve("Hunter"), "DefaultHunterConfiguration");
 		borderPersistence = BorderPersistence.getInstance();
 		register(new HunterLoaderV10(borderPersistence));
 	}
