@@ -15,7 +15,7 @@ import fr.pederobien.minecrafthunter.persistence.loaders.HunterLoaderV10;
 import fr.pederobien.persistence.interfaces.IPersistence;
 
 public class HunterPersistence extends AbstractMinecraftPersistence<IHunterConfiguration> {
-	private static final String ROOT_XML_DOCUMENT = "hungergame";
+	private static final String ROOT_XML_DOCUMENT = "hunter";
 	private IPersistence<IBorderConfiguration> borderPersistence;
 
 	private HunterPersistence() {
