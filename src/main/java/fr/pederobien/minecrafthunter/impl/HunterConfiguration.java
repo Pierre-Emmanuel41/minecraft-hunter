@@ -84,7 +84,7 @@ public class HunterConfiguration extends AbstractGameBorderConfiguration impleme
 
 	@Override
 	public Boolean isDistanceFromHunterDisplayed() {
-		return isOneHunterPerTarget ? isDistanceFromHunterDisplayed == null ? DEFAULT_IS_DISTANCE_FROM_HUNTER_DISPLAYED : isDistanceFromHunterDisplayed : false;
+		return isOneHunterPerTarget() ? isDistanceFromHunterDisplayed == null ? DEFAULT_IS_DISTANCE_FROM_HUNTER_DISPLAYED : isDistanceFromHunterDisplayed : false;
 	}
 
 	@Override
