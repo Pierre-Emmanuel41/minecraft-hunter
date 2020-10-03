@@ -43,4 +43,9 @@ public class HunterDistanceRefreshPeriod extends AbstractLabelEdition<IHunterCon
 			return emptyList();
 		}
 	}
+
+	@Override
+	public boolean isAvailable() {
+		return get() != null && get().isDistanceFromHunterDisplayed();
+	}
 }
