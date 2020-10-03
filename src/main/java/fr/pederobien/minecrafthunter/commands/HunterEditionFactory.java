@@ -95,4 +95,11 @@ public class HunterEditionFactory {
 	public static IMapPersistenceEdition<IHunterConfiguration> isTargetNameDisplayed() {
 		return new IsTargetNameDisplayed();
 	}
+
+	/**
+	 * @return An edition to set the target direction refresh period.
+	 */
+	public static IMapPersistenceEdition<IHunterConfiguration> targetDirectionRefreshPeriod() {
+		return new TargetDirectionRefreshPeriod();
+	}
 }
