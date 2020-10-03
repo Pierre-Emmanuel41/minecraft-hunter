@@ -62,7 +62,7 @@ public interface IHunterConfiguration extends IGameBorderConfiguration {
 	 * 
 	 * @param isOneHunterPerTarget True if a target can only one hunter, false otherwise.
 	 */
-	void setOneHunterPerTarget(boolean isOneHunterPerTarget);
+	void setIsOneHunterPerTarget(boolean isOneHunterPerTarget);
 
 	/**
 	 * @return True if the distance from the target's hunter should be displayed on target's score board, false otherwise.

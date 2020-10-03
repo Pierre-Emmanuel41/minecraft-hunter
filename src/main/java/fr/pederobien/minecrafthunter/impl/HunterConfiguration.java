@@ -78,7 +78,7 @@ public class HunterConfiguration extends AbstractGameBorderConfiguration impleme
 	}
 
 	@Override
-	public void setOneHunterPerTarget(boolean isOneHunterPerTarget) {
+	public void setIsOneHunterPerTarget(boolean isOneHunterPerTarget) {
 		this.isOneHunterPerTarget = isOneHunterPerTarget;
 	}
 
