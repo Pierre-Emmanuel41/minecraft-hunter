@@ -23,18 +23,19 @@ public class HunterConfiguration extends AbstractGameBorderConfiguration impleme
 	private static final Boolean DEFAULT_IS_TARGET_NAME_DISPLAYED = false;
 	private static final ItemStack DEFAULT_ITEM_ON_PLAYER_KILLS = new ItemStack(Material.GOLDEN_APPLE);
 
-	// private IGame game;
+	private IGame game;
 	private LocalTime playerDontReviveTime, playerDontReviveTimeBefore, targetDirectionRefreshPeriod, hunterDistanceRefreshPeriod;
 	private Boolean isUhc, isOneHunterPerTarget, isDistanceFromHunterDisplayed, isTargetNameDisplayed;
 	private ItemStack itemOnPlayerKills;
 
 	public HunterConfiguration(String name) {
 		super(name);
+		game = new HunterGame(this);
 	}
 
 	@Override
 	public IGame getGame() {
-		return null;
+		return game;
 	}
 
 	@Override
