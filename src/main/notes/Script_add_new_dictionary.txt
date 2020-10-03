@@ -1,0 +1,31 @@
+If you are reading this, you are about to add a new dictionary to this project. Thank you a lot.
+Please follow the step below in order to add a dictionary in one commit:
+
+1) Check if the dictionary you are about to add does not exists.
+
+2) In the folder src/main/resources/dictionaries, create a new folder named as the dictionary language (ex : language = german, src/main/resources/dictionaries/German).
+
+3) Create the dictionary xml file, you could also copy past one of the existing dictionary (ex : Hunter.xml).
+
+4) Update the tag <locales> for each language supported by the new dictionary (see other existing dictionaries).
+
+5) Write the translation of each code in the new language.
+
+6) Update the method registerDictionaries in class HunterPlugin by adding the code below.
+   The <Name of the new folder> has to be replaced by the new folder you have created (here : German) :
+   // Registering <Name of the new folder> dictionaries
+   registerDictionary("<Name of the new folder>", dictionaries);
+	
+
+7) Update the pom.xml in order to export your new dictionary in the jar. The code below should be added after the last <resource> tag.
+   The <Name of the new folder> has to be replaced by the new folder you have created (here : German) :
+   <resource>
+      <targetPath>./resources/dictionaries/<Name of the new folder></targetPath>
+      <filtering>true</filtering>
+      <directory>${basedir}/src/main/resources/dictionaries/<Name of the new folder></directory>
+      <includes>
+         <include>*.xml</include>
+      </includes>
+   </resource>
+
+8) Commit and create a pull request.
