@@ -51,6 +51,14 @@ public class Hunters {
 		return hunters.get(player);
 	}
 
+	/**
+	 * Unregister each IHunter for the PlayerDeathEvent and clear the map that contains all registered hunters.
+	 */
+	public void reset() {
+		hunters.values().forEach(hunter -> hunter.setActivated(false));
+		hunters.clear();
+	}
+
 	private void dispatchWithOneHunter() {
 		List<Player> players = new ArrayList<Player>(PlayerManager.getPlayers().collect(Collectors.toList()));
 		for (int i = 0; i < 10; i++)
