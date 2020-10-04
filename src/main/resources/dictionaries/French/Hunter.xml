@@ -228,5 +228,9 @@
 			<code>HUNTER__TARGET</code>
 			<value>Cible : </value>
 		</message>
+		<message>
+			<code>HUNTER__HUNTER</code>
+			<value>Chasseur : </value>
+		</message>
 	</messages>
 </dictionary>

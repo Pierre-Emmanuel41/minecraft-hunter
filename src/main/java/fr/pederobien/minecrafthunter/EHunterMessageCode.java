@@ -58,7 +58,7 @@ public enum EHunterMessageCode implements IMinecraftMessageCode {
 	HUNTER_NO_RESURRECTION_COUNT_DOWN(Permission.ALL),
 
 	// Code for entries
-	HUNTER__TARGET;
+	HUNTER__TARGET, HUNTER__HUNTER;
 
 	private Permission permission;
 
