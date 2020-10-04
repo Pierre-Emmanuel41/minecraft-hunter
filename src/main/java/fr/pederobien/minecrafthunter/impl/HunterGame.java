@@ -4,10 +4,8 @@ import java.time.LocalTime;
 
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
-import org.bukkit.entity.Player;
 
 import fr.pederobien.minecraftgameplateform.interfaces.element.IEventListener;
-import fr.pederobien.minecraftgameplateform.interfaces.element.ITeam;
 import fr.pederobien.minecraftgameplateform.utils.Plateform;
 import fr.pederobien.minecrafthunter.EHunterMessageCode;
 import fr.pederobien.minecrafthunter.HunterPlugin;
@@ -21,6 +19,7 @@ import fr.pederobien.minecrafthunter.interfaces.IHunterObjective;
 import fr.pederobien.minecrafthunter.interfaces.state.IGameState;
 import fr.pederobien.minecraftmanagers.EColor;
 import fr.pederobien.minecraftmanagers.MessageManager.DisplayOption;
+import fr.pederobien.minecraftmanagers.PlayerManager;
 import fr.pederobien.minecraftmanagers.ScoreboardManager;
 
 public class HunterGame implements IHunterGame {
@@ -44,12 +43,11 @@ public class HunterGame implements IHunterGame {
 
 	@Override
 	public void start() {
-		for (ITeam team : getConfiguration().getTeams())
-			for (Player player : team.getPlayers()) {
-				IHunterObjective objective = new HunterObjective(HunterPlugin.get(), player, "Side bar", "Hunter Game", getConfiguration());
-				objective.setScoreboard(ScoreboardManager.createScoreboard());
-				Plateform.getObjectiveUpdater().register(objective);
-			}
+		PlayerManager.getPlayers().forEach(player -> {
+			IHunterObjective objective = new HunterObjective(HunterPlugin.get(), player, "Side bar", "Hunter Game", getConfiguration());
+			objective.setScoreboard(ScoreboardManager.createScoreboard());
+			Plateform.getObjectiveUpdater().register(objective);
+		});
 		current.start();
 	}
 

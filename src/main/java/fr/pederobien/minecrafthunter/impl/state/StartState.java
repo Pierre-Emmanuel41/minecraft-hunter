@@ -1,14 +1,16 @@
 package fr.pederobien.minecrafthunter.impl.state;
 
-import java.util.Optional;
+import java.util.HashMap;
+import java.util.Map;
 
 import org.bukkit.GameMode;
 import org.bukkit.GameRule;
+import org.bukkit.Location;
+import org.bukkit.entity.Player;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 
 import fr.pederobien.minecraftborder.interfaces.IBorderConfiguration;
-import fr.pederobien.minecraftgameplateform.helpers.TeamHelper;
 import fr.pederobien.minecraftgameplateform.utils.Plateform;
 import fr.pederobien.minecrafthunter.interfaces.IHunterGame;
 import fr.pederobien.minecraftmanagers.PlayerManager;
@@ -16,9 +18,11 @@ import fr.pederobien.minecraftmanagers.PotionManager;
 import fr.pederobien.minecraftmanagers.WorldManager;
 
 public class StartState extends AbstractState {
+	private Map<Player, Location> locations;
 
 	public StartState(IHunterGame game) {
 		super(game);
+		locations = new HashMap<Player, Location>();
 	}
 
 	@Override
@@ -55,11 +59,23 @@ public class StartState extends AbstractState {
 	}
 
 	private void teleport() {
-		TeamHelper.createTeamsOnServer(getConfiguration().getTeams());
-		Optional<IBorderConfiguration> optConf = getConfiguration().getBorder(WorldManager.OVERWORLD);
-		if (!optConf.isPresent())
-			return;
+		locations.clear();
+		IBorderConfiguration overworld = getConfiguration().getBorder(WorldManager.OVERWORLD).get();
 
-		getConfigurationHelper().teleportTeamsRandomly(WorldManager.OVERWORLD, optConf.get().getBorderCenter(), optConf.get().getInitialBorderDiameter());
+		PlayerManager.getPlayers().forEach(player -> {
+			Location location = WorldManager.getRandomlyLocation(WorldManager.OVERWORLD, overworld.getBorderCenter(), overworld.getInitialBorderDiameter());
+			if (!locations.isEmpty()) {
+				boolean locationTooClose;
+				do {
+					locationTooClose = false;
+					location = WorldManager.getRandomlyLocation(WorldManager.OVERWORLD, overworld.getBorderCenter(), overworld.getInitialBorderDiameter());
+					for (Location loc : locations.values())
+						locationTooClose |= WorldManager.getSquaredDistance2D(loc, location) < 150;
+				} while (locationTooClose);
+			}
+			locations.put(player, location);
+		});
+
+		locations.entrySet().forEach(entry -> PlayerManager.teleporte(entry.getKey(), entry.getValue()));
 	}
 }
