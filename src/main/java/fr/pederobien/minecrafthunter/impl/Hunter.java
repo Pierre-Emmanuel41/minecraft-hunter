@@ -2,7 +2,6 @@ package fr.pederobien.minecrafthunter.impl;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Optional;
 
@@ -49,24 +48,12 @@ public class Hunter extends EventListener implements IHunter {
 			quitPlayers.add(this);
 			return;
 		}
-
-		for (IHunter hunter : hunters)
-			if (hunter.getPlayer().getName().equals(event.getPlayer().getName())) {
-				quitPlayers.add(hunter);
-				break;
-			}
 	}
 
 	@Override
 	public void onPlayerJoinEvent(PlayerJoinEvent event) {
-		Iterator<IHunter> iterator = quitPlayers.iterator();
-		while (iterator.hasNext()) {
-			IHunter hunter = iterator.next();
-			if (hunter.getPlayer().getName().equals(event.getPlayer().getName())) {
-				hunter.setPlayer(event.getPlayer());
-				iterator.remove();
-			}
-		}
+		if (event.getPlayer().getName().equals(source.getName()))
+			setPlayer(event.getPlayer());
 	}
 
 	@Override
