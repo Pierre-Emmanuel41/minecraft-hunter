@@ -55,7 +55,10 @@ public enum EHunterMessageCode implements IMinecraftMessageCode {
 
 	// Code for in game messages
 	HUNTER_OVERWORLD_BORDER_IS_MISSING(Permission.SENDER), HUNTER_PVP_ENABLED(Permission.ALL), HUNTER_NO_RESURRECTION(Permission.ALL),
-	HUNTER_NO_RESURRECTION_COUNT_DOWN(Permission.ALL);
+	HUNTER_NO_RESURRECTION_COUNT_DOWN(Permission.ALL),
+
+	// Code for entries
+	HUNTER__TARGET;
 
 	private Permission permission;
 

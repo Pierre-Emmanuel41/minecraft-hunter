@@ -224,5 +224,9 @@
 			<code>HUNTER_NO_RESURRECTION_COUNT_DOWN</code>
 			<value>Pas de résurrection dans %s</value>
 		</message>
+		<message>
+			<code>HUNTER__TARGET</code>
+			<value>Cible : </value>
+		</message>
 	</messages>
 </dictionary>
