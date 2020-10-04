@@ -17,6 +17,8 @@ import fr.pederobien.minecraftgameplateform.entries.updaters.TimeTaskObserverEnt
 import fr.pederobien.minecraftgameplateform.impl.element.GameObjective;
 import fr.pederobien.minecraftgameplateform.interfaces.element.ITeam;
 import fr.pederobien.minecraftgameplateform.utils.Plateform;
+import fr.pederobien.minecrafthunter.entries.HunterEntry;
+import fr.pederobien.minecrafthunter.entries.TargetEntry;
 import fr.pederobien.minecrafthunter.interfaces.IHunterConfiguration;
 import fr.pederobien.minecrafthunter.interfaces.IHunterObjective;
 import fr.pederobien.minecraftmanagers.WorldManager;
@@ -107,9 +109,18 @@ public class HunterObjective extends GameObjective<IHunterConfiguration> impleme
 		IBorderConfiguration borderConf = getConfiguration().getBorder(WorldManager.OVERWORLD).get();
 		add(score -> new LocationSynchronizedEntry(score).addUpdater(UpdatersFactory.playerMove().condition(e -> e.getPlayer().equals(getPlayer()))));
 		add(score -> new CenterEntry(score, borderConf.getBorderCenter()).addUpdater(UpdatersFactory.playerMove().condition(e -> e.getPlayer().equals(getPlayer()))));
+
 		emptyEntry(-entries().size());
+
+		add(score -> new TargetEntry(score).addUpdater(UpdatersFactory.periodic(getConfiguration().getTargetDirectionRefreshPeriod().toSecondOfDay() * 20)));
+		if (getConfiguration().isDistanceFromHunterDisplayed())
+			add(score -> new HunterEntry(score).addUpdater(UpdatersFactory.periodic(getConfiguration().getHunterDistanceRefreshPeriod().toSecondOfDay() * 20)));
+
+		emptyEntry(-entries().size());
+
 		for (IBorderConfiguration border : getConfiguration().getBorders())
 			add(score -> new WorldBorderSizeCountDownEntry(score, border, "#").setDisplayHalfSize(true).addUpdater(new TimeTaskObserverEntryUpdater()));
+
 		Plateform.getTimeLine().addObserver(borderConf.getStartTime(), this);
 	}
 
