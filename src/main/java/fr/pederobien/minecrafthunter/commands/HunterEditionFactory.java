@@ -85,8 +85,8 @@ public class HunterEditionFactory {
 	/**
 	 * @return An edition to set if the distance from the closer hunter should be displayed in to target's score board.
 	 */
-	public static IMapPersistenceEdition<IHunterConfiguration> isDistanceFromHunterDisplayed() {
-		return new IsDistanceFromHunterDisplayed();
+	public static IMapPersistenceEdition<IHunterConfiguration> isHunterDistanceDisplayed() {
+		return new IsHunterDistanceDisplayed();
 	}
 
 	/**

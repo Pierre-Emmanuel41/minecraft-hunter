@@ -164,15 +164,15 @@
 			<value>Rule isOnePlayerPerTarget in configuration %s is now set to : %s</value>
 		</message>
 		<message>
-			<code>IS_DISTANCE_FROM_HUNTER_DISPLAYED__EXPLANATION</code>
+			<code>IS_HUNTER_DISTANCE_DISPLAYED__EXPLANATION</code>
 			<value>To set if the distance from the closer hunter is displayed in the target score board</value>
 		</message>
 		<message>
-			<code>IS_DISTANCE_FROM_HUNTER_DISPLAYED__VALUE_IS_MISSING</code>
+			<code>IS_HUNTER_DISTANCE_DISPLAYED__VALUE_IS_MISSING</code>
 			<value>Cannot set if the distance from the closer hunter is displayed in the target score board, the value is missing</value>
 		</message>
 		<message>
-			<code>IS_DISTANCE_FROM_HUNTER_DISPLAYED__VALUE_DEFINED</code>
+			<code>IS_HUNTER_DISTANCE_DISPLAYED__VALUE_DEFINED</code>
 			<value>Rule isDistancefromHunterDisplayed in configuration %s is now set to : %s</value>
 		</message>
 		<message>

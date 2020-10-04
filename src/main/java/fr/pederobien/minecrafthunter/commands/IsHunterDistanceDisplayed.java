@@ -11,19 +11,19 @@ import fr.pederobien.minecraftgameplateform.impl.editions.AbstractLabelEdition;
 import fr.pederobien.minecrafthunter.EHunterMessageCode;
 import fr.pederobien.minecrafthunter.interfaces.IHunterConfiguration;
 
-public class IsDistanceFromHunterDisplayed extends AbstractLabelEdition<IHunterConfiguration> {
+public class IsHunterDistanceDisplayed extends AbstractLabelEdition<IHunterConfiguration> {
 
-	protected IsDistanceFromHunterDisplayed() {
-		super(EHunterLabel.IS_DISTANCE_FROM_HUNTER_DISPLAYED, EHunterMessageCode.IS_DISTANCE_FROM_HUNTER_DISPLAYED__EXPLANATION);
+	protected IsHunterDistanceDisplayed() {
+		super(EHunterLabel.IS_HUNTER_DISTANCE_DISPLAYED, EHunterMessageCode.IS_HUNTER_DISTANCE_DISPLAYED__EXPLANATION);
 	}
 
 	@Override
 	public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
 		try {
 			get().setIsDistanceFromHunterDisplayed(getBoolean(args[0]));
-			sendSynchro(sender, EHunterMessageCode.IS_DISTANCE_FROM_HUNTER_DISPLAYED__VALUE_DEFINED, get().getName(), get().isDistanceFromHunterDisplayed());
+			sendSynchro(sender, EHunterMessageCode.IS_HUNTER_DISTANCE_DISPLAYED__VALUE_DEFINED, get().getName(), get().isDistanceFromHunterDisplayed());
 		} catch (IndexOutOfBoundsException e) {
-			sendNotSynchro(sender, EHunterMessageCode.IS_DISTANCE_FROM_HUNTER_DISPLAYED__VALUE_IS_MISSING);
+			sendNotSynchro(sender, EHunterMessageCode.IS_HUNTER_DISTANCE_DISPLAYED__VALUE_IS_MISSING);
 			return false;
 		} catch (BooleanParseException e) {
 			sendNotSynchro(sender, ECommonMessageCode.COMMON_BAD_BOOLEAN_FORMAT);
