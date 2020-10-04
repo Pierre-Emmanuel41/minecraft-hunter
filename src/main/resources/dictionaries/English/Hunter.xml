@@ -212,6 +212,10 @@
 			<value>The closer hunter distance period refresh in configuration %s is now set to : %s</value>
 		</message>
 		<message>
+			<code>HUNTER_NOT_ENOUGH_PLAYERS</code>
+			<value>Cannot start game %s, there is not enough players (min 2)</value>
+		</message>
+		<message>
 			<code>HUNTER_OVERWORLD_BORDER_IS_MISSING</code>
 			<value>Cannot start game %s, the overworld's border is missing</value>
 		</message>

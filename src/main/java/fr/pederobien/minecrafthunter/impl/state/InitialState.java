@@ -10,6 +10,7 @@ import fr.pederobien.minecraftgameplateform.utils.Plateform;
 import fr.pederobien.minecrafthunter.EHunterMessageCode;
 import fr.pederobien.minecrafthunter.interfaces.IHunterGame;
 import fr.pederobien.minecraftmanagers.EColor;
+import fr.pederobien.minecraftmanagers.PlayerManager;
 import fr.pederobien.minecraftmanagers.WorldManager;
 import fr.pederobien.minecraftrules.impl.GameRule;
 
@@ -21,6 +22,10 @@ public class InitialState extends AbstractState {
 
 	@Override
 	public boolean initiate(CommandSender sender, Command command, String label, String[] args) {
+		if (PlayerManager.getPlayers().count() < 2) {
+			sendNotSynchro(sender, EHunterMessageCode.HUNTER_NOT_ENOUGH_PLAYERS, EColor.DARK_RED, getConfiguration().getName());
+			return false;
+		}
 		Optional<IBorderConfiguration> optOverworldBorder = getConfiguration().getBorder(WorldManager.OVERWORLD);
 		if (!optOverworldBorder.isPresent()) {
 			sendNotSynchro(sender, EHunterMessageCode.HUNTER_OVERWORLD_BORDER_IS_MISSING, EColor.DARK_RED, getConfiguration().getName());
