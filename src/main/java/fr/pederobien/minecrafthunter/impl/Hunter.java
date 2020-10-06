@@ -2,7 +2,9 @@ package fr.pederobien.minecrafthunter.impl;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 import org.bukkit.entity.Player;
@@ -22,7 +24,7 @@ import fr.pederobien.minecrafthunter.interfaces.IObsHunter;
 
 public class Hunter extends EventListener implements IHunter {
 	private Player source;
-	private List<IHunter> hunters;
+	private Map<Player, IHunter> hunters;
 	private IHunter target;
 	private IObservable<IObsHunter> observers;
 	private List<IHunter> quitPlayers;
@@ -30,7 +32,7 @@ public class Hunter extends EventListener implements IHunter {
 	private Hunter(Player player) {
 		this.source = player;
 
-		hunters = new ArrayList<IHunter>();
+		hunters = new HashMap<Player, IHunter>();
 		observers = new Observable<IObsHunter>();
 		quitPlayers = new ArrayList<IHunter>();
 
@@ -69,13 +71,13 @@ public class Hunter extends EventListener implements IHunter {
 	@Override
 	public IHunter addHunter(IHunter hunter) {
 		observers.notifyObservers(obs -> obs.onHunterAdded(this, hunter));
-		hunters.add(hunter);
+		hunters.put(hunter.getPlayer(), hunter);
 		return this;
 	}
 
 	@Override
 	public IHunter removeHunter(IHunter hunter) {
-		if (hunters.remove(hunter))
+		if (hunters.remove(hunter.getPlayer()) != null)
 			observers.notifyObservers(obs -> obs.onHunterRemoved(this, hunter));
 		return this;
 	}
@@ -96,7 +98,7 @@ public class Hunter extends EventListener implements IHunter {
 
 	@Override
 	public List<IHunter> getHunters() {
-		return Collections.unmodifiableList(hunters);
+		return Collections.unmodifiableList(new ArrayList<IHunter>(hunters.values()));
 	}
 
 	@Override
@@ -109,8 +111,36 @@ public class Hunter extends EventListener implements IHunter {
 		observers.removeObserver(obs);
 	}
 
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+
+		if (!(obj instanceof IHunter))
+			return false;
+
+		IHunter other = (IHunter) obj;
+		return getPlayer().equals(other.getPlayer());
+	}
+
 	@EventHandler(priority = EventPriority.NORMAL, ignoreCancelled = true)
 	public void onPlayerDeath(PlayerDeathEvent event) {
+		if (!event.getEntity().getName().equals(source.getName()))
+			return;
 
+		if (HunterPlugin.getCurrentHunter().isOneHunterPerTarget())
+			reorganizeHunterAndTarget(event.getEntity().getKiller());
+		else
+			reorganizeHunterAndTargets(event.getEntity().getKiller());
+	}
+
+	private void reorganizeHunterAndTarget(Player killer) {
+		for (IHunter hunter : getHunters())
+			hunter.setTarget(target);
+	}
+
+	private void reorganizeHunterAndTargets(Player killer) {
+		for (IHunter hunter : getHunters())
+			hunter.setTarget(target);
 	}
 }
