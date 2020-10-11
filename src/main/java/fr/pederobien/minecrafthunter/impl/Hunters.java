@@ -5,13 +5,13 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
+import java.util.Optional;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import org.bukkit.GameMode;
 import org.bukkit.entity.Player;
 
-//import fr.pederobien.minecrafthunter.HunterPlugin;
 import fr.pederobien.minecrafthunter.interfaces.IHunter;
 import fr.pederobien.minecrafthunter.interfaces.IHunterConfiguration;
 import fr.pederobien.minecraftmanagers.PlayerManager;
@@ -53,8 +53,8 @@ public class Hunters {
 	 * 
 	 * @see IHunter
 	 */
-	public IHunter getAsHunter(Player player) {
-		return hunters.get(player);
+	public Optional<IHunter> getAsHunter(Player player) {
+		return Optional.ofNullable(hunters.get(player));
 	}
 
 	/**
@@ -103,11 +103,11 @@ public class Hunters {
 		while (!players.isEmpty()) {
 			Player h = TeamManager.getRandom(players).get();
 			players.remove(h);
-			IHunter hunter = Hunter.of(h);
+			IHunter hunter = getOrCreateHunter(h);
 			targetList.removeIf(player -> player.equals(h));
 
 			Player t = TeamManager.getRandom(targetList).get();
-			IHunter target = Hunter.of(t);
+			IHunter target = getOrCreateHunter(t);
 			hunter.setTarget(target);
 
 			targetList.clear();
@@ -125,41 +125,21 @@ public class Hunters {
 
 			hunters.put(h, hunter);
 		}
-
-		// Départ : tous les joueurs sont mentionnés une seule fois (J1, J2, J3, J4)
-		//
-		// Paramètre decay (ex decay = 3) modifie la probabilité des autres joueurs pour être sélectionné en tant que cible.
-		//
-		// Tirage aléatoire du chasseur entre J1, J2, J3 et J4 -> J2 = hunter
-		// Tirage aléatoire de la cible entre J1, J3 et J4 -> (1xJ1, 1xJ3, 1xJ4)
-		// J3 choisi
-		// Mise à jour de la liste : (3xJ1, 3xJ2, 1xJ3, 3xJ4)
-		//
-		//
-		// Tirage aléatoire du chasseur entre J1, J3 et J4 -> J4 = hunter
-		// Tirage aléatoire de la cible entre J1, J2 et J3 -> (3xJ1, 3xJ2, 1xJ3)
-		// J1 choisi
-		// Mise à jour de la liste : (3xJ1, 9xJ2, 3xJ3, 9xJ4)
-		//
-		// Tirage aléatoire du chasseur entre J1, J3 -> J3 = hunter
-		// Tirage aléatoire de la cible entre J1, J2, J4 -> (3xJ1, 9xJ2, 9xJ4)
-		// J1 choisi
-		// Mise à jour de la liste : (3xJ1, 36xJ2, 9xJ3, 36xJ4)
-		//
-		// Tirage aléatoire du chasseur entre J1 -> J1 = hunter
-		// Tirage aléatoire de la cible entre J2, J3, J4 -> (36xJ2, 9xJ3, 36xJ4)
-		// J4 choisi
-		// Mise à jour de la liste : (9xJ1, 108xJ2, 27xJ3, 36xJ4)
-		//
-		// Result : J2 -> J3, J4 -> J1, J3 -> J1, J1 -> J4
-		//
-		// modélisation : hunters : List<Player> targets : Map<Player, Integer> : Player = cible, Integer = nb occurence
 	}
 
 	private void associateHunterAndTarget(List<Player> players, int hunterIndex, int targetIndex) {
-		IHunter hunter = Hunter.of(players.get(hunterIndex));
-		IHunter target = Hunter.of(players.get(targetIndex));
+		IHunter hunter = getOrCreateHunter(players.get(hunterIndex));
+		IHunter target = getOrCreateHunter(players.get(targetIndex));
 		hunter.setTarget(target);
+	}
+
+	private IHunter getOrCreateHunter(Player player) {
+		Optional<IHunter> optHunter = getAsHunter(player);
+		if (optHunter.isPresent())
+			return optHunter.get();
+
+		IHunter hunter = optHunter.isPresent() ? optHunter.get() : Hunter.of(player);
 		hunters.put(hunter.getPlayer(), hunter);
+		return hunter;
 	}
 }

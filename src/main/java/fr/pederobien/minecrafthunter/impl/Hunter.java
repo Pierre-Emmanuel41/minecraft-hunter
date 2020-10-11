@@ -6,6 +6,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
+import java.util.StringJoiner;
 import java.util.stream.Collectors;
 
 import org.bukkit.GameMode;
@@ -69,8 +70,8 @@ public class Hunter extends EventListener implements IHunter {
 
 	@Override
 	public IHunter addHunter(IHunter hunter) {
-		observers.notifyObservers(obs -> obs.onHunterAdded(this, hunter));
 		hunters.put(hunter.getPlayer(), hunter);
+		observers.notifyObservers(obs -> obs.onHunterAdded(this, hunter));
 		return this;
 	}
 
@@ -125,6 +126,14 @@ public class Hunter extends EventListener implements IHunter {
 		return getPlayer().equals(other.getPlayer());
 	}
 
+	@Override
+	public String toString() {
+		StringJoiner joiner = new StringJoiner(", ", "{", "}");
+		for (IHunter hunter : getHunters())
+			joiner.add(hunter.getPlayer().getName());
+		return String.format("{%s,target=%s,hunter=%s}", getPlayer().getName(), (getTarget().isPresent() ? getTarget().get().getPlayer().getName() : null), joiner);
+	}
+
 	@EventHandler(priority = EventPriority.HIGHEST, ignoreCancelled = true)
 	public void onPlayerDeath(PlayerDeathEvent event) {
 		if (!event.getEntity().getName().equals(source.getName()) || !event.getEntity().getGameMode().equals(GameMode.SURVIVAL))
@@ -132,29 +141,29 @@ public class Hunter extends EventListener implements IHunter {
 
 		target.removeHunter(this);
 		if (HunterPlugin.getCurrentHunter().isOneHunterPerTarget())
-			reorganizeHunterAndTarget(event.getEntity().getKiller());
+			reorganizeHunterAndTarget();
 		else
-			reorganizeHunterAndTargets(event.getEntity().getKiller());
+			reorganizeHunterAndTargets();
+		setTarget(null);
+		hunters.clear();
 	}
 
-	private void reorganizeHunterAndTarget(Player killer) {
+	private void reorganizeHunterAndTarget() {
 		for (IHunter hunter : getHunters())
 			try {
 				hunter.setTarget(target);
 			} catch (TargetAndHunterAreEqualsException e) {
 				findNewTarget(e.getHunter());
 			}
-		setTarget(null);
 	}
 
-	private void reorganizeHunterAndTargets(Player killer) {
+	private void reorganizeHunterAndTargets() {
 		for (IHunter hunter : getHunters())
 			try {
 				hunter.setTarget(target);
 			} catch (TargetAndHunterAreEqualsException e) {
 				findNewTarget(e.getHunter());
 			}
-		setTarget(null);
 	}
 
 	private void findNewTarget(IHunter hunter) {

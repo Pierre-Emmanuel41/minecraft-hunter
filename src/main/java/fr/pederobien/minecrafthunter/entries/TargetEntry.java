@@ -23,10 +23,11 @@ public class TargetEntry extends OrientationEntry implements IObsHunter {
 	 */
 	public TargetEntry(int score) {
 		super(score);
-		hunter = Hunters.getInstance().getAsHunter(getPlayer());
+		hunter = Hunters.getInstance().getAsHunter(getPlayer()).get();
 		optTarget = hunter.getTarget();
-		if (optTarget.isPresent())
-			setBlock(optTarget.get().getPlayer().getLocation().getBlock());
+
+		// Target cannot be null at the beginning
+		setBlock(optTarget.get().getPlayer().getLocation().getBlock());
 		hunter.addObserver(this);
 	}
 
