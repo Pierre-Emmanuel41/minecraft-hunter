@@ -12,6 +12,7 @@ import org.bukkit.potion.PotionEffectType;
 
 import fr.pederobien.minecraftborder.interfaces.IBorderConfiguration;
 import fr.pederobien.minecraftgameplateform.utils.Plateform;
+import fr.pederobien.minecrafthunter.impl.Hunters;
 import fr.pederobien.minecrafthunter.interfaces.IHunterGame;
 import fr.pederobien.minecraftmanagers.PlayerManager;
 import fr.pederobien.minecraftmanagers.PotionManager;
@@ -31,6 +32,7 @@ public class StartState extends AbstractState {
 		updatePlayers();
 		updateOverWorld();
 		teleport();
+		Hunters.getInstance().dispatchHunters(getConfiguration());
 		Plateform.getObjectiveUpdater().start();
 		getGame().setCurrentState(getGame().getInGameState());
 	}

@@ -6,6 +6,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 import org.bukkit.GameMode;
 import org.bukkit.entity.Player;
@@ -20,22 +21,22 @@ import fr.pederobien.minecraftgameplateform.impl.observer.Observable;
 import fr.pederobien.minecraftgameplateform.interfaces.observer.IObservable;
 import fr.pederobien.minecraftgameplateform.utils.Plateform;
 import fr.pederobien.minecrafthunter.HunterPlugin;
+import fr.pederobien.minecrafthunter.exceptions.TargetAndHunterAreEqualsException;
 import fr.pederobien.minecrafthunter.interfaces.IHunter;
 import fr.pederobien.minecrafthunter.interfaces.IObsHunter;
+import fr.pederobien.minecraftmanagers.TeamManager;
 
 public class Hunter extends EventListener implements IHunter {
 	private Player source;
 	private Map<Player, IHunter> hunters;
 	private IHunter target;
 	private IObservable<IObsHunter> observers;
-	private List<IHunter> quitPlayers;
 
 	private Hunter(Player player) {
 		this.source = player;
 
 		hunters = new HashMap<Player, IHunter>();
 		observers = new Observable<IObsHunter>();
-		quitPlayers = new ArrayList<IHunter>();
 
 		Plateform.getPlayerQuitOrJoinEventListener().addObserver(this);
 		register(HunterPlugin.get());
@@ -47,10 +48,7 @@ public class Hunter extends EventListener implements IHunter {
 
 	@Override
 	public void onPlayerQuitEvent(PlayerQuitEvent event) {
-		if (event.getPlayer().getName().equals(source.getName())) {
-			quitPlayers.add(this);
-			return;
-		}
+
 	}
 
 	@Override
@@ -85,6 +83,9 @@ public class Hunter extends EventListener implements IHunter {
 
 	@Override
 	public IHunter setTarget(IHunter target) {
+		if (equals(target))
+			throw new TargetAndHunterAreEqualsException(this);
+
 		IHunter oldTarget = this.target;
 		observers.notifyObservers(obs -> obs.onTargetChanged(this, oldTarget, target));
 		this.target = target;
@@ -129,6 +130,7 @@ public class Hunter extends EventListener implements IHunter {
 		if (!event.getEntity().getName().equals(source.getName()) || !event.getEntity().getGameMode().equals(GameMode.SURVIVAL))
 			return;
 
+		target.removeHunter(this);
 		if (HunterPlugin.getCurrentHunter().isOneHunterPerTarget())
 			reorganizeHunterAndTarget(event.getEntity().getKiller());
 		else
@@ -137,11 +139,27 @@ public class Hunter extends EventListener implements IHunter {
 
 	private void reorganizeHunterAndTarget(Player killer) {
 		for (IHunter hunter : getHunters())
-			hunter.setTarget(target);
+			try {
+				hunter.setTarget(target);
+			} catch (TargetAndHunterAreEqualsException e) {
+				findNewTarget(e.getHunter());
+			}
+		setTarget(null);
 	}
 
 	private void reorganizeHunterAndTargets(Player killer) {
 		for (IHunter hunter : getHunters())
-			hunter.setTarget(target);
+			try {
+				hunter.setTarget(target);
+			} catch (TargetAndHunterAreEqualsException e) {
+				findNewTarget(e.getHunter());
+			}
+		setTarget(null);
+	}
+
+	private void findNewTarget(IHunter hunter) {
+		List<IHunter> players = Hunters.getInstance().getNotDeadHunters().filter(h -> !h.getPlayer().equals(hunter.getPlayer())).collect(Collectors.toList());
+		Optional<IHunter> optPlayer = TeamManager.getRandom(players);
+		hunter.setTarget(optPlayer.isPresent() ? optPlayer.get() : null);
 	}
 }

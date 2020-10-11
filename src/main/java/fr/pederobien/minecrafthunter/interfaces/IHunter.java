@@ -7,6 +7,7 @@ import org.bukkit.entity.Player;
 
 import fr.pederobien.minecraftgameplateform.interfaces.element.IEventListener;
 import fr.pederobien.minecraftgameplateform.interfaces.observer.IObsPlayerQuitOrJoinEventListener;
+import fr.pederobien.minecrafthunter.exceptions.TargetAndHunterAreEqualsException;
 
 public interface IHunter extends IObsPlayerQuitOrJoinEventListener, IEventListener {
 
@@ -46,6 +47,8 @@ public interface IHunter extends IObsPlayerQuitOrJoinEventListener, IEventListen
 	 * @param target The target that is hunted by this hunter.
 	 * 
 	 * @return This hunter.
+	 * 
+	 * @throws TargetAndHunterAreEqualsException If the given target equals this hunter.
 	 */
 	IHunter setTarget(IHunter target);
 
