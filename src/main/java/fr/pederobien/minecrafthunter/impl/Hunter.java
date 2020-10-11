@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
+import org.bukkit.GameMode;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
@@ -123,9 +124,9 @@ public class Hunter extends EventListener implements IHunter {
 		return getPlayer().equals(other.getPlayer());
 	}
 
-	@EventHandler(priority = EventPriority.NORMAL, ignoreCancelled = true)
+	@EventHandler(priority = EventPriority.HIGHEST, ignoreCancelled = true)
 	public void onPlayerDeath(PlayerDeathEvent event) {
-		if (!event.getEntity().getName().equals(source.getName()))
+		if (!event.getEntity().getName().equals(source.getName()) || !event.getEntity().getGameMode().equals(GameMode.SURVIVAL))
 			return;
 
 		if (HunterPlugin.getCurrentHunter().isOneHunterPerTarget())

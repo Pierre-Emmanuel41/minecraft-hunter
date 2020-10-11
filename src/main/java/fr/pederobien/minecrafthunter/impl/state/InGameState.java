@@ -64,7 +64,7 @@ public class InGameState extends AbstractState {
 
 	private class InGameListener extends EventListener {
 
-		@EventHandler(priority = EventPriority.HIGHEST, ignoreCancelled = true)
+		@EventHandler(priority = EventPriority.HIGH, ignoreCancelled = true)
 		public void onPlayerDie(PlayerDeathEvent event) {
 			if (!isActivated())
 				return;
