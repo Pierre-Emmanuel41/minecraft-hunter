@@ -20,12 +20,17 @@ public class HunterEntry extends PlateformEntry implements IObsHunter {
 	 */
 	public HunterEntry(int score) {
 		super(score);
+	}
+
+	@Override
+	public void initialize() {
+		super.initialize();
 		target = Hunters.getInstance().getAsHunter(getPlayer()).get();
 	}
 
 	@Override
 	protected String updateCurrentValue(Player player) {
-		return getHunterDistance().toString();
+		return getHunterDistance() == null ? "" : getHunterDistance().toString();
 	}
 
 	@Override
@@ -34,6 +39,9 @@ public class HunterEntry extends PlateformEntry implements IObsHunter {
 	}
 
 	private Integer getHunterDistance() {
+		if (target.getHunters().isEmpty())
+			return null;
+
 		int min = Integer.MAX_VALUE;
 		for (IHunter hunter : target.getHunters())
 			min = Math.min(min, (int) WorldManager.getSquaredDistance2D(target.getPlayer().getLocation(), hunter.getPlayer().getLocation()));
