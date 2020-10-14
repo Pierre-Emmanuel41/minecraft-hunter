@@ -90,7 +90,8 @@ public class Hunter extends EventListener implements IHunter {
 		IHunter oldTarget = this.target;
 		observers.notifyObservers(obs -> obs.onTargetChanged(this, oldTarget, target));
 		this.target = target;
-		target.addHunter(this);
+		if (target != null)
+			target.addHunter(this);
 		return this;
 	}
 
@@ -131,12 +132,12 @@ public class Hunter extends EventListener implements IHunter {
 		StringJoiner joiner = new StringJoiner(", ", "{", "}");
 		for (IHunter hunter : getHunters())
 			joiner.add(hunter.getPlayer().getName());
-		return String.format("{%s,target=%s,hunter=%s}", getPlayer().getName(), (getTarget().isPresent() ? getTarget().get().getPlayer().getName() : null), joiner);
+		return String.format("{%s,target=%s,hunters=%s}", getPlayer().getName(), (getTarget().isPresent() ? getTarget().get().getPlayer().getName() : null), joiner);
 	}
 
 	@EventHandler(priority = EventPriority.HIGHEST, ignoreCancelled = true)
 	public void onPlayerDeath(PlayerDeathEvent event) {
-		if (!event.getEntity().getName().equals(source.getName()) || !event.getEntity().getGameMode().equals(GameMode.SURVIVAL))
+		if (!event.getEntity().getName().equals(source.getName()) || event.getEntity().getGameMode().equals(GameMode.SURVIVAL))
 			return;
 
 		target.removeHunter(this);
