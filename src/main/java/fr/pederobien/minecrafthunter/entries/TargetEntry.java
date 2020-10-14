@@ -23,6 +23,11 @@ public class TargetEntry extends OrientationEntry implements IObsHunter {
 	 */
 	public TargetEntry(int score) {
 		super(score);
+	}
+
+	@Override
+	public void initialize() {
+		super.initialize();
 		hunter = Hunters.getInstance().getAsHunter(getPlayer()).get();
 		optTarget = hunter.getTarget();
 
@@ -38,14 +43,15 @@ public class TargetEntry extends OrientationEntry implements IObsHunter {
 
 	@Override
 	public String getAfter() {
-		return HunterPlugin.getCurrentHunter().isTargetNameDisplayed() ? optTarget.isPresent() ? "(" + optTarget.get().getPlayer().getName() + ")" : null : null;
+		return HunterPlugin.getCurrentHunter().isTargetNameDisplayed() && optTarget.isPresent() ? " " + optTarget.get().getPlayer().getName() : "";
 	}
 
 	@Override
 	public void onTargetChanged(IHunter hunter, IHunter oldTarget, IHunter newTarget) {
-		if (newTarget == null)
+		if (newTarget == null) {
 			getObjective().removeEntry(getScore());
-		else {
+			getObjective().removeEntry(getScore() - 1);
+		} else {
 			if (!isActivated())
 				getObjective().addEntry(this);
 			setBlock(newTarget.getPlayer().getLocation().getBlock());
