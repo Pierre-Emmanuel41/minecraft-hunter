@@ -115,7 +115,7 @@ public class Hunters {
 			for (Entry<Player, Integer> entry : map.entrySet()) {
 				int occurence = entry.getValue();
 				if (!entry.getKey().equals(t)) {
-					occurence = entry.getValue() + 1; // Multiply here by decay instead of increasing by 1
+					occurence = entry.getValue() * 2; // Multiply here by decay instead of increasing by 1
 					map.put(entry.getKey(), occurence);
 				}
 

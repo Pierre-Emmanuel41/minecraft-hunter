@@ -112,9 +112,12 @@ public class HunterObjective extends GameObjective<IHunterConfiguration> impleme
 
 		emptyEntry(-entries().size());
 
-		add(score -> new TargetEntry(score).addUpdater(UpdatersFactory.periodic(getConfiguration().getTargetDirectionRefreshPeriod().toSecondOfDay() * 20)));
+		add(score -> new TargetEntry(score, getConfiguration().getTargetDirectionRefreshPeriod())
+				.addUpdater(UpdatersFactory.playerMove().condition(e -> e.getPlayer().equals(getPlayer()))));
+
 		if (getConfiguration().isDistanceFromHunterDisplayed())
-			add(score -> new HunterEntry(score).addUpdater(UpdatersFactory.periodic(getConfiguration().getHunterDistanceRefreshPeriod().toSecondOfDay() * 20)));
+			add(score -> new HunterEntry(score, getConfiguration().getHunterDistanceRefreshPeriod())
+					.addUpdater(UpdatersFactory.playerMove().condition(e -> e.getPlayer().equals(getPlayer()))));
 
 		emptyEntry(-entries().size());
 

@@ -146,7 +146,9 @@ public class Hunter extends EventListener implements IHunter {
 		else
 			reorganizeHunterAndTargets();
 		setTarget(null);
-		hunters.clear();
+
+		List<IHunter> hunters = new ArrayList<IHunter>(this.hunters.values());
+		hunters.forEach(hunter -> removeHunter(hunter));
 	}
 
 	private void reorganizeHunterAndTarget() {
