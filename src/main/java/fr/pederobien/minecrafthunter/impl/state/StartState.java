@@ -72,7 +72,7 @@ public class StartState extends AbstractState {
 					locationTooClose = false;
 					location = WorldManager.getRandomlyLocation(WorldManager.OVERWORLD, overworld.getBorderCenter(), overworld.getInitialBorderDiameter());
 					for (Location loc : locations.values())
-						locationTooClose |= WorldManager.getSquaredDistance2D(loc, location) < 150;
+						locationTooClose |= WorldManager.getDistance2D(loc, location) < 50;
 				} while (locationTooClose);
 			}
 			locations.put(player, location);

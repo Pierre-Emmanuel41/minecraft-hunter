@@ -45,7 +45,7 @@ public class HunterEntry extends PlateformEntry implements IObsHunter, IObsTimeL
 
 	@Override
 	protected String updateCurrentValue(Player player) {
-		return distance.toString();
+		return distance == null ? "?" : distance.toString();
 	}
 
 	@Override

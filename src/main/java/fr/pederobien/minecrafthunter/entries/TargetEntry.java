@@ -58,10 +58,10 @@ public class TargetEntry extends OrientationEntry implements IObsHunter, IObsTim
 
 	@Override
 	public void onTargetChanged(IHunter hunter, IHunter oldTarget, IHunter newTarget) {
-		if (newTarget != null)
+		if (newTarget != null) {
+			optTarget = Optional.of(newTarget);
 			setBlock(newTarget.getPlayer().getLocation().getBlock());
-		// Player is dead
-		else {
+		} else {
 			getObjective().removeEntry(getScore() - 1);
 			getObjective().removeEntry(getScore());
 			Plateform.getTimeLine().removeObserver(currentTime, this);
