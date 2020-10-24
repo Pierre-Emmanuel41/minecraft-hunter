@@ -5,6 +5,7 @@ import java.time.LocalTime;
 import org.bukkit.inventory.ItemStack;
 
 import fr.pederobien.minecraftborder.interfaces.IGameBorderConfiguration;
+import fr.pederobien.minecrafthunter.exceptions.DecayValueMustBeGreaterThanOne;
 import fr.pederobien.minecrafthunter.exceptions.MinimumDistanceMustBePositive;
 
 public interface IHunterConfiguration extends IGameBorderConfiguration {
@@ -127,4 +128,26 @@ public interface IHunterConfiguration extends IGameBorderConfiguration {
 	 * @throws MinimumDistanceMustBePositive If the given distance is less or equals to 0.
 	 */
 	void setMinimumDistance(int minimumDistance);
+
+	/**
+	 * This parameter is only used when the parameter {@link #isOneHunterPerTarget()} returns true. It change the probability for a
+	 * not already chosen target to be chosen for the next hunter. The smaller the number is (minimum is 1) the greater the disparity
+	 * there will be : From a target to another one, the number of hunters could be very different. The greater the number is (no
+	 * limit, but greater than 20 the result does not change), the less disparity there will be : Each target has one hunter.
+	 * 
+	 * @return An integer.
+	 */
+	Integer getDecay();
+
+	/**
+	 * This parameter is only used when the parameter {@link #isOneHunterPerTarget()} returns true. It change the probability for a
+	 * not already chosen target to be chosen for the next hunter. The smaller the number is (minimum is 1) the greater the disparity
+	 * there will be : From a target to another one, the number of hunters could be very different. The greater the number is (no
+	 * limit, but greater than 20 the result does not change), the less disparity there will be : Each target has one hunter.
+	 * 
+	 * @param decay The new value of decay.
+	 * 
+	 * @throws DecayValueMustBeGreaterThanOne If the given value is strictly less than one.
+	 */
+	void setDecay(int decay);
 }

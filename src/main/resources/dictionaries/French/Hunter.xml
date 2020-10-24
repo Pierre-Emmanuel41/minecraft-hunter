@@ -229,6 +229,26 @@
 			<value>La distance minimum entre les joueurs pendant la téléportation est définie à %s bloc(s) pour la configuration %s</value>
 		</message>
 		<message>
+			<code>HUNTER_DECAY__EXPLANATION</code>
+			<value>Pour modifier la probabilité pour une cible pas encore choisie d'être choisie pour le prochain chasseur. Plus ce nombre est petit (minimum 1) plus il y a aura de disparité : D'une cible à l'autre, le nombre de chasseurs peut être très différent. Plus ce nombre est grand (pas de limite, mais au dessus de 20 le résultat ne change pas), moins il y aura de disparité : Chaque cible a un chassuer.</value>
+		</message>
+		<message>
+			<code>HUNTER_DECAY__ON_TAB_COMPLETE</code>
+			<value>&lt;valeur&gt;</value>
+		</message>
+		<message>
+			<code>HUNTER_DECAY__VALUE_IS_MISSING</code>
+			<value>Impossible de définir la valeur du paramètre decay, il manque la valeur</value>
+		</message>
+		<message>
+			<code>HUNTER_DECAY__DECAY_VALUE_MUST_BE_GREATER_THAN_ONE</code>
+			<value>Cannot set the value of parameter decay, the value must be greater than one</value>
+		</message>
+		<message>
+			<code>HUNTER_DECAY__VALUE_DEFINED</code>
+			<value>Impossible de définir la valeur du paramètre decay, la valeur doit être supérieure ou égale à un</value>
+		</message>
+		<message>
 			<code>HUNTER_NOT_ENOUGH_PLAYERS</code>
 			<value>Impossible de lancer la partie %s, il n'y a pas assez de joueurs (min 2)</value>
 		</message>

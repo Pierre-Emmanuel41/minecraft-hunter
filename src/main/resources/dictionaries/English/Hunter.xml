@@ -232,6 +232,26 @@
 			<value>The minimum distance between players during the teleportation is set to %s block(s) for configuration %s</value>
 		</message>
 		<message>
+			<code>HUNTER_DECAY__EXPLANATION</code>
+			<value>To change the probability for a not already chosen target to be chosen for the next hunter. The smaller the number is (minimum 1) the greater the disparity there will be : From a target to another one, the number of hunters could be very different. The greater the number is (no limit, but greater than 20 the result does not change), the less disparity there will be : Each target has one hunter.</value>
+		</message>
+		<message>
+			<code>HUNTER_DECAY__ON_TAB_COMPLETE</code>
+			<value>&lt;value&gt;</value>
+		</message>
+		<message>
+			<code>HUNTER_DECAY__VALUE_IS_MISSING</code>
+			<value>Cannot set the value of parameter decay, the value is missing</value>
+		</message>
+		<message>
+			<code>HUNTER_DECAY__DECAY_VALUE_MUST_BE_GREATER_THAN_ONE</code>
+			<value>Cannot set the value of parameter decay, the value must be greater or equals to one</value>
+		</message>
+		<message>
+			<code>HUNTER_DECAY__VALUE_DEFINED</code>
+			<value>The value of parameter decay is set to %s for configuration %s</value>
+		</message>
+		<message>
 			<code>HUNTER_NOT_ENOUGH_PLAYERS</code>
 			<value>Cannot start game %s, there is not enough players (min 2)</value>
 		</message>

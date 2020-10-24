@@ -43,6 +43,9 @@ public class HunterLoaderV10 extends AbstractHunterLoader {
 
 		// Getting configuration minimum distance
 		setMinimumDistance(root);
+
+		// Getting configuration decay
+		setDecay(root);
 		return this;
 	}
 }

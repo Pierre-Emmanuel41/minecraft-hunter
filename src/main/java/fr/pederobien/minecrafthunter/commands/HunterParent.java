@@ -21,6 +21,7 @@ public class HunterParent extends AbstractGameBorderConfigurationParent<IHunterC
 		addEdition(HunterEditionFactory.targetDirectionRefreshPeriod());
 		addEdition(HunterEditionFactory.hunterDistanceRefreshPeriod());
 		addEdition(HunterEditionFactory.minimumDistance());
+		addEdition(HunterEditionFactory.decayHunter());
 	}
 
 	@Override

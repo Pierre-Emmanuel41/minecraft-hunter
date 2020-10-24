@@ -100,6 +100,10 @@ public class HunterPersistence extends AbstractMinecraftPersistence<IHunterConfi
 		minimumDistance.appendChild(doc.createTextNode(get().getMinimumDistance().toString()));
 		root.appendChild(minimumDistance);
 
+		Element decay = createElement(doc, HunterXmlTag.DECAY);
+		decay.appendChild(doc.createTextNode(get().getDecay().toString()));
+		root.appendChild(decay);
+
 		saveDocument(doc, get().getName());
 		return true;
 	}

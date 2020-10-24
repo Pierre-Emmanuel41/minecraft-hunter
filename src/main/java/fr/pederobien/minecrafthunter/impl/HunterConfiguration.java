@@ -10,6 +10,7 @@ import fr.pederobien.minecraftborder.impl.AbstractGameBorderConfiguration;
 import fr.pederobien.minecraftdevelopmenttoolkit.utils.DisplayHelper;
 import fr.pederobien.minecraftgameplateform.interfaces.element.IGame;
 import fr.pederobien.minecraftgameplateform.interfaces.element.ITeam;
+import fr.pederobien.minecrafthunter.exceptions.DecayValueMustBeGreaterThanOne;
 import fr.pederobien.minecrafthunter.exceptions.MinimumDistanceMustBePositive;
 import fr.pederobien.minecrafthunter.interfaces.IHunterConfiguration;
 import fr.pederobien.minecraftmanagers.WorldManager;
@@ -24,12 +25,13 @@ public class HunterConfiguration extends AbstractGameBorderConfiguration impleme
 	private static final Boolean DEFAULT_IS_TARGET_NAME_DISPLAYED = false;
 	private static final ItemStack DEFAULT_ITEM_ON_PLAYER_KILLS = new ItemStack(Material.GOLDEN_APPLE);
 	private static final Integer DEFAULT_MINIMUM_DISTANCE = 150;
+	private static final Integer DEFAULT_DECAY = 1;
 
 	private IGame game;
 	private LocalTime playerDontReviveTime, playerDontReviveTimeBefore, targetDirectionRefreshPeriod, hunterDistanceRefreshPeriod;
 	private Boolean isUhc, isOneHunterPerTarget, isDistanceFromHunterDisplayed, isTargetNameDisplayed;
 	private ItemStack itemOnPlayerKills;
-	private Integer minimumDistance;
+	private Integer minimumDistance, decay;
 
 	public HunterConfiguration(String name) {
 		super(name);
@@ -138,6 +140,18 @@ public class HunterConfiguration extends AbstractGameBorderConfiguration impleme
 	}
 
 	@Override
+	public Integer getDecay() {
+		return decay == null ? DEFAULT_DECAY : decay;
+	}
+
+	@Override
+	public void setDecay(int decay) {
+		if (decay < 1)
+			throw new DecayValueMustBeGreaterThanOne(decay);
+		this.decay = decay;
+	}
+
+	@Override
 	public String toString() {
 		StringJoiner joiner = new StringJoiner("\n");
 		joiner.add("Name : " + getName());
@@ -159,8 +173,14 @@ public class HunterConfiguration extends AbstractGameBorderConfiguration impleme
 		joiner.add("Distance from hunter displayed : " + display(isDistanceFromHunterDisplayed, isDistanceFromHunterDisplayed().toString()));
 		joiner.add("Target name displayed : " + display(isTargetNameDisplayed, isTargetNameDisplayed().toString()));
 		joiner.add("Target direction refresh period : " + display(targetDirectionRefreshPeriod, DisplayHelper.toString(getTargetDirectionRefreshPeriod(), true)));
-		joiner.add("Hunter distance refresh period : " + display(hunterDistanceRefreshPeriod, DisplayHelper.toString(getHunterDistanceRefreshPeriod(), true)));
+
+		if (isDistanceFromHunterDisplayed())
+			joiner.add("Hunter distance refresh period : " + display(hunterDistanceRefreshPeriod, DisplayHelper.toString(getHunterDistanceRefreshPeriod(), true)));
+
 		joiner.add("Minimum distance between players : " + display(minimumDistance, DisplayHelper.toString(getMinimumDistance(), "block(s)")));
+
+		if (!isOneHunterPerTarget())
+			joiner.add("Decay : " + display(decay, getDecay().toString()));
 		return joiner.toString();
 	}
 }

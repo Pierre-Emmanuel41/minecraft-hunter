@@ -116,4 +116,11 @@ public class HunterEditionFactory {
 	public static IMapPersistenceEdition<IHunterConfiguration> minimumDistance() {
 		return new MinimumDistance();
 	}
+
+	/**
+	 * @return An edition to set the parameter decay for an hunter game.
+	 */
+	public static IMapPersistenceEdition<IHunterConfiguration> decayHunter() {
+		return new DecayHunter();
+	}
 }

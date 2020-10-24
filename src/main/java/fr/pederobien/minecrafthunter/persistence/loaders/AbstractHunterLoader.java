@@ -136,6 +136,16 @@ public abstract class AbstractHunterLoader extends AbstractXmlPersistenceLoader<
 		get().setMinimumDistance(getIntNodeValue(minimumDistance.getChildNodes().item(0)));
 	}
 
+	/**
+	 * Set the configuration's decay
+	 * 
+	 * @param root The xml root that contains all configuration's parameter
+	 */
+	protected void setDecay(Element root) {
+		Node decay = getElementsByTagName(root, HunterXmlTag.DECAY).item(0);
+		get().setDecay(getIntNodeValue(decay.getChildNodes().item(0)));
+	}
+
 	private Material getMaterial(String name) {
 		String normalizedName = name.toUpperCase().replace(" ", "_");
 		for (Material material : Material.values())
