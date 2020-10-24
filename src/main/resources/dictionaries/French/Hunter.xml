@@ -209,6 +209,26 @@
 			<value>La période de rafraîchissement de la distance au plus proche chasseur pour la configuration %s est maintenant définie à : %s</value>
 		</message>
 		<message>
+			<code>HUNTER_MINIMUM_DISTANCE__EXPLANATION</code>
+			<value>Pour définir la distance minimum entre les joueurs pendant la téléportation au début de la partie</value>
+		</message>
+		<message>
+			<code>HUNTER_MINIMUM_DISTANCE__ON_TAB_COMPLETE</code>
+			<value>&lt;distance minimum&gt;</value>
+		</message>
+		<message>
+			<code>HUNTER_MINIMUM_DISTANCE__DISTANCE_IS_MISSING</code>
+			<value>Impossible de définir la distance entre les joueurs, il manque la distance</value>
+		</message>
+		<message>
+			<code>HUNTER_MINIMUM_DISTANCE__DISTANCE_MUST_BE_POSITIVE</code>
+			<value>Impossible de définir la distance entre les joueurs, la distance doit être strictement positive</value>
+		</message>
+		<message>
+			<code>HUNTER_MINIMUM_DISTANCE__DISTANCE_DEFINED</code>
+			<value>La distance minimum entre les joueurs pendant la téléportation est définie à %s bloc(s) pour la configuration %s</value>
+		</message>
+		<message>
 			<code>HUNTER_NOT_ENOUGH_PLAYERS</code>
 			<value>Impossible de lancer la partie %s, il n'y a pas assez de joueurs (min 2)</value>
 		</message>

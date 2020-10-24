@@ -10,6 +10,7 @@ import fr.pederobien.minecraftborder.impl.AbstractGameBorderConfiguration;
 import fr.pederobien.minecraftdevelopmenttoolkit.utils.DisplayHelper;
 import fr.pederobien.minecraftgameplateform.interfaces.element.IGame;
 import fr.pederobien.minecraftgameplateform.interfaces.element.ITeam;
+import fr.pederobien.minecrafthunter.exceptions.MinimumDistanceMustBePositive;
 import fr.pederobien.minecrafthunter.interfaces.IHunterConfiguration;
 import fr.pederobien.minecraftmanagers.WorldManager;
 
@@ -22,11 +23,13 @@ public class HunterConfiguration extends AbstractGameBorderConfiguration impleme
 	private static final Boolean DEFAULT_IS_DISTANCE_FROM_HUNTER_DISPLAYED = false;
 	private static final Boolean DEFAULT_IS_TARGET_NAME_DISPLAYED = false;
 	private static final ItemStack DEFAULT_ITEM_ON_PLAYER_KILLS = new ItemStack(Material.GOLDEN_APPLE);
+	private static final Integer DEFAULT_MINIMUM_DISTANCE = 150;
 
 	private IGame game;
 	private LocalTime playerDontReviveTime, playerDontReviveTimeBefore, targetDirectionRefreshPeriod, hunterDistanceRefreshPeriod;
 	private Boolean isUhc, isOneHunterPerTarget, isDistanceFromHunterDisplayed, isTargetNameDisplayed;
 	private ItemStack itemOnPlayerKills;
+	private Integer minimumDistance;
 
 	public HunterConfiguration(String name) {
 		super(name);
@@ -123,6 +126,18 @@ public class HunterConfiguration extends AbstractGameBorderConfiguration impleme
 	}
 
 	@Override
+	public Integer getMinimumDistance() {
+		return minimumDistance == null ? DEFAULT_MINIMUM_DISTANCE : minimumDistance;
+	}
+
+	@Override
+	public void setMinimumDistance(int minimumDistance) {
+		if (minimumDistance <= 0)
+			throw new MinimumDistanceMustBePositive(minimumDistance);
+		this.minimumDistance = minimumDistance;
+	}
+
+	@Override
 	public String toString() {
 		StringJoiner joiner = new StringJoiner("\n");
 		joiner.add("Name : " + getName());
@@ -139,16 +154,13 @@ public class HunterConfiguration extends AbstractGameBorderConfiguration impleme
 		joiner.add("IsUhc : " + display(isUhc, isUhc().toString()));
 		joiner.add("Player don't revive time : " + display(playerDontReviveTime, DisplayHelper.toString(getPlayerDontReviveTime(), true)));
 		joiner.add("Pvp time : " + DisplayHelper.toString(getPvpTime(), true));
-		joiner.add("Item on player kills : " + display(itemOnPlayerKills, normalizeMaterial(getItemOnPlayerKills().getType())));
+		joiner.add("Item on player kills : " + display(itemOnPlayerKills, DisplayHelper.toString(getItemOnPlayerKills().getType())));
 		joiner.add("One hunter per target : " + display(isOneHunterPerTarget, isOneHunterPerTarget().toString()));
 		joiner.add("Distance from hunter displayed : " + display(isDistanceFromHunterDisplayed, isDistanceFromHunterDisplayed().toString()));
 		joiner.add("Target name displayed : " + display(isTargetNameDisplayed, isTargetNameDisplayed().toString()));
 		joiner.add("Target direction refresh period : " + display(targetDirectionRefreshPeriod, DisplayHelper.toString(getTargetDirectionRefreshPeriod(), true)));
 		joiner.add("Hunter distance refresh period : " + display(hunterDistanceRefreshPeriod, DisplayHelper.toString(getHunterDistanceRefreshPeriod(), true)));
+		joiner.add("Minimum distance between players : " + display(minimumDistance, DisplayHelper.toString(getMinimumDistance(), "block(s)")));
 		return joiner.toString();
-	}
-
-	private String normalizeMaterial(Material material) {
-		return material.toString().toLowerCase().replace("_", " ");
 	}
 }

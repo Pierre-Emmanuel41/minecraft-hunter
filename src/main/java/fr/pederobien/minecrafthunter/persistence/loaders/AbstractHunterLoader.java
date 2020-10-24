@@ -126,6 +126,16 @@ public abstract class AbstractHunterLoader extends AbstractXmlPersistenceLoader<
 		get().setIsTargetNameDisplayed(getBooleanNodeValue(isTargetNameDisplayed.getChildNodes().item(0)));
 	}
 
+	/**
+	 * Set the configuration's minimum distance
+	 * 
+	 * @param root The xml root that contains all configuration's parameter
+	 */
+	protected void setMinimumDistance(Element root) {
+		Node minimumDistance = getElementsByTagName(root, HunterXmlTag.MINIMUM_DISTANCE).item(0);
+		get().setMinimumDistance(getIntNodeValue(minimumDistance.getChildNodes().item(0)));
+	}
+
 	private Material getMaterial(String name) {
 		String normalizedName = name.toUpperCase().replace(" ", "_");
 		for (Material material : Material.values())

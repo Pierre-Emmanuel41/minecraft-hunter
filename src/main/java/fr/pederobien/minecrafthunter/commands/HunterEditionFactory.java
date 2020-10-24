@@ -109,4 +109,11 @@ public class HunterEditionFactory {
 	public static IMapPersistenceEdition<IHunterConfiguration> hunterDistanceRefreshPeriod() {
 		return new HunterDistanceRefreshPeriod();
 	}
+
+	/**
+	 * @return An edition to set the minimum distance between players during the teleportation at the beginning of the game.
+	 */
+	public static IMapPersistenceEdition<IHunterConfiguration> minimumDistance() {
+		return new MinimumDistance();
+	}
 }

@@ -96,6 +96,10 @@ public class HunterPersistence extends AbstractMinecraftPersistence<IHunterConfi
 		isTargetNameDisplayed.appendChild(doc.createTextNode(get().isTargetNameDisplayed().toString()));
 		root.appendChild(isTargetNameDisplayed);
 
+		Element minimumDistance = createElement(doc, HunterXmlTag.MINIMUM_DISTANCE);
+		minimumDistance.appendChild(doc.createTextNode(get().getMinimumDistance().toString()));
+		root.appendChild(minimumDistance);
+
 		saveDocument(doc, get().getName());
 		return true;
 	}

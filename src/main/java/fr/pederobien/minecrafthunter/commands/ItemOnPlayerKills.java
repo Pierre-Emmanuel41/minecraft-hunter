@@ -7,6 +7,7 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.inventory.ItemStack;
 
+import fr.pederobien.minecraftdevelopmenttoolkit.utils.DisplayHelper;
 import fr.pederobien.minecraftgameplateform.impl.editions.AbstractLabelEdition;
 import fr.pederobien.minecrafthunter.EHunterMessageCode;
 import fr.pederobien.minecrafthunter.interfaces.IHunterConfiguration;
@@ -23,7 +24,7 @@ public class ItemOnPlayerKills extends AbstractLabelEdition<IHunterConfiguration
 			String materialKey = args[0];
 			Material material = null;
 			for (Material m : Material.values())
-				if (m.getKey().getKey().equals(materialKey)) {
+				if (DisplayHelper.toString(m).equals(materialKey)) {
 					material = m;
 					break;
 				}
@@ -34,7 +35,7 @@ public class ItemOnPlayerKills extends AbstractLabelEdition<IHunterConfiguration
 			}
 
 			get().setItemOnPlayerKills(new ItemStack(material));
-			sendSynchro(sender, EHunterMessageCode.ITEM_ON_PLAYER_KILLS_HUNTER__ITEM_DEFINED, normalizeMaterial(get().getItemOnPlayerKills().getType()));
+			sendSynchro(sender, EHunterMessageCode.ITEM_ON_PLAYER_KILLS_HUNTER__ITEM_DEFINED, DisplayHelper.toString(get().getItemOnPlayerKills().getType()));
 		} catch (IndexOutOfBoundsException e) {
 			sendNotSynchro(sender, EHunterMessageCode.ITEM_ON_PLAYER_KILLS_HUNTER__ITEM_IS_MISSING);
 			return false;
@@ -50,9 +51,5 @@ public class ItemOnPlayerKills extends AbstractLabelEdition<IHunterConfiguration
 		default:
 			return emptyList();
 		}
-	}
-
-	private String normalizeMaterial(Material material) {
-		return material.name().toLowerCase().replace("_", " ");
 	}
 }

@@ -5,6 +5,7 @@ import java.time.LocalTime;
 import org.bukkit.inventory.ItemStack;
 
 import fr.pederobien.minecraftborder.interfaces.IGameBorderConfiguration;
+import fr.pederobien.minecrafthunter.exceptions.MinimumDistanceMustBePositive;
 
 public interface IHunterConfiguration extends IGameBorderConfiguration {
 
@@ -112,4 +113,18 @@ public interface IHunterConfiguration extends IGameBorderConfiguration {
 	 * @param hunterDistanceRefreshPeriod The period between two refresh of the hunter distance in the target score board.
 	 */
 	void setHunterDistanceRefreshPeriod(LocalTime hunterDistanceRefreshPeriod);
+
+	/**
+	 * @return The minimum distance (in block) between players for the random teleportation at the beginning of the game.
+	 */
+	Integer getMinimumDistance();
+
+	/**
+	 * Set the minimum distance (in block) between players for the random teleportation at the beginning of the game.
+	 * 
+	 * @param minimumDistance The minimum distance between players.
+	 * 
+	 * @throws MinimumDistanceMustBePositive If the given distance is less or equals to 0.
+	 */
+	void setMinimumDistance(int minimumDistance);
 }

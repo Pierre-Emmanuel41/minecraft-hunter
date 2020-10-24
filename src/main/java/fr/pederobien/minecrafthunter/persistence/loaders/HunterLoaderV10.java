@@ -20,7 +20,7 @@ public class HunterLoaderV10 extends AbstractHunterLoader {
 		// Getting configuration name
 		setName(root);
 
-		// Getting border configurations
+		// Getting configuration borders
 		setBorders(root);
 
 		// Getting configuration uhc mode
@@ -40,6 +40,9 @@ public class HunterLoaderV10 extends AbstractHunterLoader {
 
 		// Getting configuration is target name displayed
 		setIsTargetNameDisplayed(root);
+
+		// Getting configuration minimum distance
+		setMinimumDistance(root);
 		return this;
 	}
 }

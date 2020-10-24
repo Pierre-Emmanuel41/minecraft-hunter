@@ -212,6 +212,26 @@
 			<value>The closer hunter distance period refresh in configuration %s is now set to : %s</value>
 		</message>
 		<message>
+			<code>HUNTER_MINIMUM_DISTANCE__EXPLANATION</code>
+			<value>To set the minimum distance between player during the teleportation at the beginning of the game</value>
+		</message>
+		<message>
+			<code>HUNTER_MINIMUM_DISTANCE__ON_TAB_COMPLETE</code>
+			<value>&lt;minimum distance&gt;</value>
+		</message>
+		<message>
+			<code>HUNTER_MINIMUM_DISTANCE__DISTANCE_IS_MISSING</code>
+			<value>Cannot define the minimum distance between players, the distance is missing</value>
+		</message>
+		<message>
+			<code>HUNTER_MINIMUM_DISTANCE__DISTANCE_MUST_BE_POSITIVE</code>
+			<value>Cannot define the minimum distance between players, the distance must be strictly positive</value>
+		</message>
+		<message>
+			<code>HUNTER_MINIMUM_DISTANCE__DISTANCE_DEFINED</code>
+			<value>The minimum distance between players during the teleportation is set to %s block(s) for configuration %s</value>
+		</message>
+		<message>
 			<code>HUNTER_NOT_ENOUGH_PLAYERS</code>
 			<value>Cannot start game %s, there is not enough players (min 2)</value>
 		</message>
