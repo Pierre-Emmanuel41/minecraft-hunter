@@ -35,7 +35,7 @@ public class ItemOnPlayerKills extends AbstractLabelEdition<IHunterConfiguration
 			}
 
 			get().setItemOnPlayerKills(new ItemStack(material));
-			sendSynchro(sender, EHunterMessageCode.ITEM_ON_PLAYER_KILLS_HUNTER__ITEM_DEFINED, DisplayHelper.toString(get().getItemOnPlayerKills().getType()));
+			sendSynchro(sender, EHunterMessageCode.ITEM_ON_PLAYER_KILLS_HUNTER__ITEM_DEFINED, DisplayHelper.toString(get().getItemOnPlayerKills().getType(), true));
 		} catch (IndexOutOfBoundsException e) {
 			sendNotSynchro(sender, EHunterMessageCode.ITEM_ON_PLAYER_KILLS_HUNTER__ITEM_IS_MISSING);
 			return false;
@@ -47,7 +47,7 @@ public class ItemOnPlayerKills extends AbstractLabelEdition<IHunterConfiguration
 	public List<String> onTabComplete(CommandSender sender, Command command, String alias, String[] args) {
 		switch (args.length) {
 		case 1:
-			return filter(asList(Material.values()).stream().map(material -> material.getKey().getKey()), args);
+			return filter(asList(Material.values()).stream().map(material -> DisplayHelper.toString(material)), args);
 		default:
 			return emptyList();
 		}

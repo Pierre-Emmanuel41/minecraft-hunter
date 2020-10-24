@@ -168,7 +168,7 @@ public class HunterConfiguration extends AbstractGameBorderConfiguration impleme
 		joiner.add("IsUhc : " + display(isUhc, isUhc().toString()));
 		joiner.add("Player don't revive time : " + display(playerDontReviveTime, DisplayHelper.toString(getPlayerDontReviveTime(), true)));
 		joiner.add("Pvp time : " + DisplayHelper.toString(getPvpTime(), true));
-		joiner.add("Item on player kills : " + display(itemOnPlayerKills, DisplayHelper.toString(getItemOnPlayerKills().getType())));
+		joiner.add("Item on player kills : " + display(itemOnPlayerKills, DisplayHelper.toString(getItemOnPlayerKills().getType(), true)));
 		joiner.add("One hunter per target : " + display(isOneHunterPerTarget, isOneHunterPerTarget().toString()));
 		joiner.add("Distance from hunter displayed : " + display(isDistanceFromHunterDisplayed, isDistanceFromHunterDisplayed().toString()));
 		joiner.add("Target name displayed : " + display(isTargetNameDisplayed, isTargetNameDisplayed().toString()));
