@@ -3,7 +3,13 @@ package fr.pederobien.minecrafthunter.entries;
 import java.time.LocalTime;
 import java.util.Optional;
 
+import org.bukkit.Location;
+import org.bukkit.block.Block;
 import org.bukkit.entity.Player;
+import org.bukkit.event.EventHandler;
+import org.bukkit.event.EventPriority;
+import org.bukkit.event.Listener;
+import org.bukkit.event.player.PlayerPortalEvent;
 
 import fr.pederobien.minecraftdictionary.interfaces.IMinecraftMessageCode;
 import fr.pederobien.minecraftgameplateform.entries.simple.OrientationEntry;
@@ -14,11 +20,14 @@ import fr.pederobien.minecrafthunter.HunterPlugin;
 import fr.pederobien.minecrafthunter.impl.Hunters;
 import fr.pederobien.minecrafthunter.interfaces.IHunter;
 import fr.pederobien.minecrafthunter.interfaces.IObsHunter;
+import fr.pederobien.minecraftmanagers.EColor;
+import fr.pederobien.minecraftmanagers.WorldManager;
 
-public class TargetEntry extends OrientationEntry implements IObsHunter, IObsTimeLine {
+public class TargetEntry extends OrientationEntry implements IObsHunter, IObsTimeLine, Listener {
 	private IHunter hunter;
 	private Optional<IHunter> optTarget;
 	private LocalTime period, currentTime;
+	private boolean isInDifferentWorld;
 
 	/**
 	 * Create an entry that displays the orientation to follow to reach the target associated to the player's objective.
@@ -36,14 +45,22 @@ public class TargetEntry extends OrientationEntry implements IObsHunter, IObsTim
 	@Override
 	public void initialize() {
 		super.initialize();
+		getObjective().getPlugin().getServer().getPluginManager().registerEvents(this, getObjective().getPlugin());
 		hunter = Hunters.getInstance().getAsHunter(getPlayer()).get();
 		optTarget = hunter.getTarget();
 
 		// Target cannot be null at the beginning
-		setBlock(optTarget.get().getPlayer().getLocation().getBlock());
+		setBlock(getTargetBlock());
 		hunter.addObserver(this);
 
 		Plateform.getTimeLine().addObserver(currentTime, this);
+		isInDifferentWorld = false;
+	}
+
+	@Override
+	protected String updateCurrentValue(Player player) {
+		return isInDifferentWorld && getLocation(optTarget.get()).getWorld().equals(WorldManager.NETHER_WORLD) ? EColor.RED.getInColor(super.updateCurrentValue(player))
+				: EColor.RESET.getInColor(super.updateCurrentValue(player));
 	}
 
 	@Override
@@ -60,7 +77,7 @@ public class TargetEntry extends OrientationEntry implements IObsHunter, IObsTim
 	public void onTargetChanged(IHunter hunter, IHunter oldTarget, IHunter newTarget) {
 		if (newTarget != null) {
 			optTarget = Optional.of(newTarget);
-			setBlock(newTarget.getPlayer().getLocation().getBlock());
+			setBlock(getTargetBlock());
 		} else {
 			getObjective().removeEntry(getScore() - 1);
 			getObjective().removeEntry(getScore());
@@ -90,7 +107,7 @@ public class TargetEntry extends OrientationEntry implements IObsHunter, IObsTim
 
 	@Override
 	public void onTime(LocalTime currentTime) {
-		setBlock(optTarget.get().getPlayer().getLocation().getBlock());
+		setBlock(getTargetBlock());
 		this.currentTime = currentTime.plusSeconds(period.toSecondOfDay());
 	}
 
@@ -102,5 +119,36 @@ public class TargetEntry extends OrientationEntry implements IObsHunter, IObsTim
 	@Override
 	public LocalTime getNextNotifiedTime() {
 		return currentTime;
+	}
+
+	@EventHandler(priority = EventPriority.HIGH, ignoreCancelled = true)
+	public void onPlayerPortalEvent(PlayerPortalEvent event) {
+		if (!isActivated())
+			return;
+
+		// Send message to player
+		// To remove ?
+		if (event.getTo().getWorld().equals(WorldManager.END_WORLD))
+			event.setCancelled(true);
+
+		if (event.getPlayer().equals(hunter.getPlayer()) || event.getPlayer().equals(optTarget.get().getPlayer())) {
+			isInDifferentWorld = getLocation(hunter).getWorld().equals(getLocation(optTarget.get()).getWorld());
+			getObjective().update(this);
+		}
+	}
+
+	private Block getTargetBlock() {
+		if (!isInDifferentWorld || hunter.getPlayer().getLocation().getWorld().equals(WorldManager.NETHER_WORLD))
+			return optTarget.get().getPlayer().getLocation().getBlock();
+
+		return toOverworldBlock(optTarget.get().getPlayer().getLocation().getBlock());
+	}
+
+	private Block toOverworldBlock(Block origin) {
+		return origin.getRelative(origin.getX() * 8, origin.getY(), origin.getZ() * 8);
+	}
+
+	private Location getLocation(IHunter hunter) {
+		return hunter.getPlayer().getLocation();
 	}
 }
