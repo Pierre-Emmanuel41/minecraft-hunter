@@ -1,6 +1,7 @@
 package fr.pederobien.minecrafthunter.impl.state;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 import org.bukkit.ChatColor;
@@ -10,13 +11,16 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.entity.PlayerDeathEvent;
 import org.bukkit.event.player.PlayerMoveEvent;
+import org.bukkit.event.player.PlayerRespawnEvent;
 
+import fr.pederobien.minecraftborder.interfaces.IBorderConfiguration;
 import fr.pederobien.minecraftgameplateform.impl.element.EventListener;
 import fr.pederobien.minecraftgameplateform.interfaces.element.IEventListener;
 import fr.pederobien.minecrafthunter.HunterPlugin;
 import fr.pederobien.minecrafthunter.interfaces.IHunterGame;
 import fr.pederobien.minecraftmanagers.MessageManager;
 import fr.pederobien.minecraftmanagers.PlayerManager;
+import fr.pederobien.minecraftmanagers.WorldManager;
 
 public class InGameState extends AbstractState {
 	private IEventListener inGameListener, pauseGameListener;
@@ -80,6 +84,20 @@ public class InGameState extends AbstractState {
 			} else {
 				event.setKeepInventory(true);
 				PlayerManager.setGameModeOfPlayer(event.getEntity(), GameMode.SURVIVAL);
+			}
+
+			event.setDeathMessage(event.getEntity().getName() + " died, RIP...");
+		}
+
+		@EventHandler(priority = EventPriority.HIGHEST, ignoreCancelled = true)
+		public void onPlayerRespawn(PlayerRespawnEvent event) {
+			if (!isActivated() || event.getPlayer().getKiller() instanceof Player)
+				return;
+
+			Optional<IBorderConfiguration> optConf = getConfiguration().getBorder(WorldManager.OVERWORLD);
+			if (optConf.isPresent()) {
+				IBorderConfiguration conf = optConf.get();
+				event.setRespawnLocation(WorldManager.getRandomlyLocationInOverworld(conf.getBorderCenter(), (int) conf.getWorld().getWorldBorder().getSize()));
 			}
 		}
 	}
